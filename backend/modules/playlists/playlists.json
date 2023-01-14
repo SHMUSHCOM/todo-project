@@ -1,0 +1,120 @@
+[{
+    "name": "My Album",
+    "description": "This is my first album",
+    "artwork": "http://www.example.com/albumart.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd42", "5f3e9f6a7c6ece3f8e3dbd43", "5f3e9f6a7c6ece3f8e3dbd44"]
+  },
+  {
+    "name": "My Second Album",
+    "description": "This is my second album",
+    "artwork": "http://www.example.com/albumart2.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd45", "5f3e9f6a7c6ece3f8e3dbd46", "5f3e9f6a7c6ece3f8e3dbd47"]
+  },
+  {
+    "name": "My Third Album",
+    "description": "This is my third album",
+    "artwork": "http://www.example.com/albumart3.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd48", "5f3e9f6a7c6ece3f8e3dbd49", "5f3e9f6a7c6ece3f8e3dbd50"]
+  },
+  {
+    "name": "My Fourth Album",
+    "description": "This is my fourth album",
+    "artwork": "http://www.example.com/albumart4.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd51", "5f3e9f6a7c6ece3f8e3dbd52", "5f3e9f6a7c6ece3f8e3dbd53"]
+  },
+  {
+    "name": "My Fifth Album",
+    "description": "This is my fifth album",
+    "artwork": "http://www.example.com/albumart5.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd54", "5f3e9f6a7c6ece3f8e3dbd55", "5f3e9f6a7c6ece3f8e3dbd56"]
+  },
+  {
+    "name": "My Sixth Album",
+    "description": "This is my sixth album",
+    "artwork": "http://www.example.com/albumart6.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd57", "5f3e9f6a7c6ece3f8e3dbd58", "5f3e9f6a7c6ece3f8e3dbd59"]
+  },
+  {
+    "name": "My Seventh Album",
+    "description": "This is my seventh album",
+    "artwork": "http://www.example.com/albumart7.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd60", "5f3e9f6a7c6ece3f8e3dbd61", "5f3e9f6a7c6ece3f8e3dbd62"]
+  },
+  {
+    "name": "My Eighth Album",
+    "description": "This is my eighth album",
+    "artwork": "http://www.example.com/albumart8.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd63", "5f3e9f6a7c6ece3f8e3dbd64", "5f3e9f6a7c6ece3f8e3dbd65"]
+  },
+  {
+    "name": "My Ninth Album",
+    "description": "This is my ninth album",
+    "artwork": "http://www.example.com/albumart9.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd66", "5f3e9f6a7c6ece3f8e3dbd67", "5f3e9f6a7c6ece3f8e3dbd68"]
+  },
+  {
+    "name": "My Tenth Album",
+    "description": "This is my tenth album",
+    "artwork": "http://www.example.com/albumart10.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd69", "5f3e9f6a7c6ece3f8e3dbd70", "5f3e9f6a7c6ece3f8e3dbd71"]
+  },
+  {
+    "name": "My Eleventh Album",
+    "description": "This is my eleventh album",
+    "artwork": "http://www.example.com/albumart11.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd72", "5f3e9f6a7c6ece3f8e3dbd73", "5f3e9f6a7c6ece3f8e3dbd74"]
+  },
+  {
+    "name": "My Twelfth Album",
+    "description": "This is my twelfth album",
+    "artwork": "http://www.example.com/albumart12.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd75", "5f3e9f6a7c6ece3f8e3dbd76", "5f3e9f6a7c6ece3f8e3dbd77"]
+  },
+  {
+    "name": "My Thirteenth Album",
+    "description": "This is my thirteenth album",
+    "artwork": "http://www.example.com/albumart13.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd78", "5f3e9f6a7c6ece3f8e3dbd79", "5f3e9f6a7c6ece3f8e3dbd80"]
+  },
+  {
+    "name": "My Fourteenth Album",
+    "description": "This is my fourteenth album",
+    "artwork": "http://www.example.com/albumart14.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd81", "5f3e9f6a7c6ece3f8e3dbd82", "5f3e9f6a7c6ece3f8e3dbd83"]
+  },
+  {
+    "name": "My Fifteenth Album",
+    "description": "This is my fifteenth album",
+    "artwork": "http://www.example.com/albumart15.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd84", "5f3e9f6a7c6ece3f8e3dbd85", "5f3e9f6a7c6ece3f8e3dbd86"]
+  },
+  {
+    "name": "My Sixteenth Album",
+    "description": "This is my sixteenth album",
+    "artwork": "http://www.example.com/albumart16.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd87", "5f3e9f6a7c6ece3f8e3dbd88", "5f3e9f6a7c6ece3f8e3dbd89"]
+  },
+  {
+    "name": "My Seventeenth Album",
+    "description": "This is my seventeenth album",
+    "artwork": "http://www.example.com/albumart17.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd90", "5f3e9f6a7c6ece3f8e3dbd91", "5f3e9f6a7c6ece3f8e3dbd92"]
+  },
+  {
+    "name": "My Eighteenth Album",
+    "description": "This is my eighteenth album",
+    "artwork": "http://www.example.com/albumart18.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd93", "5f3e9f6a7c6ece3f8e3dbd94", "5f3e9f6a7c6ece3f8e3dbd95"]
+  },
+  {
+    "name": "My Nineteenth Album",
+    "description": "This is my nineteenth album",
+    "artwork": "http://www.example.com/albumart19.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd96", "5f3e9f6a7c6ece3f8e3dbd97", "5f3e9f6a7c6ece3f8e3dbd98"]
+  },
+  {
+    "name": "My Twentieth Album",
+    "description": "This is my twentieth album",
+    "artwork": "http://www.example.com/albumart20.jpg",
+    "songs": ["5f3e9f6a7c6ece3f8e3dbd99", "5f3e9f6a7c6ece3f8e3dbe00", "5f3e9f6a7c6ece3f8e3dbe01"]
+  }]
