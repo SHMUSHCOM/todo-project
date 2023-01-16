@@ -6,7 +6,7 @@ const ToolBar = () => {
         <Styles>
             <div className='search'>
                 <img src='/search.svg'></img>
-                <input type="text" placeholder='Search anything'></input>
+                <input type="text" placeholder='Search everywhere'></input>
             </div>
             <img src="/Avatars.png" alt="Profile Image" />
 

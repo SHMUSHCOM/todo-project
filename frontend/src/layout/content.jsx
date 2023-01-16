@@ -17,6 +17,8 @@ const Styles = styled.div`
     height: 100%;
     overflow: scroll;
     padding: 20px;
+    background-color: #f9f9f9;
+
 
 
 

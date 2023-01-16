@@ -7,7 +7,6 @@ const SidePanel = () => {
         <Styles className='panel'>
             <nav>
                 <ul>
-                    <li><NavLink to='/'>Home</NavLink></li>
                     <li><NavLink to='/songs'>Songs</NavLink></li>
                     <li><NavLink to='/artists'>Artists</NavLink></li>
                     <li><NavLink to='/playlists'>Playlists</NavLink></li>
