@@ -19,7 +19,7 @@ const SidePanel = () => {
 
 const Styles = styled.div`
     
-    width: 250px;
+    min-width: 250px;
     min-height: 100%;
     padding-top: 50px;
     margin: 0px;
