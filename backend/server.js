@@ -4,9 +4,7 @@ import connect from './database/config.js'
 import morgan from 'morgan'
 import cors from 'cors'
 
-import artistRouter from './modules/artists/artist.routes.js'
-import songRouter from './modules/songs/song.routes.js'
-import playlistRouter from './modules/playlists/playlist.routes.js'
+import todoRouter from './modules/todos/todo.router.js'
 
 const {PORT, HOST, DB_URI} = process.env
 const server = express()
@@ -17,9 +15,8 @@ server.use(cors())
 server.use(json())
 
 // Routes
-server.use('/artists', artistRouter )
-server.use('/songs', songRouter )
-server.use('/playlists', playlistRouter )
+server.use('/todos', todoRouter )
+
 
 // 500 Error
 server.use((error, request, response, next)=>{
