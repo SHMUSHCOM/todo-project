@@ -1,17 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";;
 import setLocalStorage from "./local-storage";
-import artistSlice from "./slices/artist.slice";
-import songsSlice from "./slices/song.slice";
-import playlistSlice from "./slices/playlist.slice";
+import todoSlice from './slices/todo.slice'
+
 
 const preLoadedState = JSON.parse(window.localStorage.getItem("state") || '{}');
 
 const store = configureStore({
-  reducer: {
-    songs: songsSlice,
-    artists: artistSlice,
-    playlists: playlistSlice,
-  }, 
+  reducer: {todos: todoSlice}, 
   preloadedState: preLoadedState,
   middleware: (getDefaultMiddleware)=> [...getDefaultMiddleware(), setLocalStorage]
 })

@@ -8,7 +8,7 @@ const ToolBar = () => {
                 <img src='/search.svg'></img>
                 <input type="text" placeholder='Search everywhere'></input>
             </div>
-            <img src="/Avatars.png" alt="Profile Image" />
+            <img src="/avatar.png" alt="Profile Image" />
 
             
         </Styles>
@@ -32,11 +32,13 @@ const Styles = styled.div`
         display: flex;
         gap: 5px;
         padding: 10px;
+        width: 200px;
     }
 
     input {
         border: none;
         outline: none;
+        width: 100%;
     }
 
 `

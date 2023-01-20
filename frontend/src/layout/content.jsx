@@ -16,7 +16,7 @@ const Styles = styled.div`
     flex-grow: 1;
     height: 100%;
     overflow: scroll;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #f9f9f9;
 
 

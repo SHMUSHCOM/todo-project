@@ -1,28 +1,29 @@
-import react from 'react'
-import styled from 'styled-components'
+
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Header from './layout/header'
-import SidePanel from './layout/panel'
+import LeftPanel from './layout/left-panel'
+import RightPanel from './layout/right-panel'
 import Main from './layout/main'
 import Content from './layout/content'
-import Songs from './pages/songs'
-import Artists from './pages/artists'
-import Playlists from './pages/playlists'
+import TodoList from './pages/todo-list'
+import Page404 from './pages/404.jsx'
+
 
 
 function App() {
   return <BrowserRouter>
     <Header></Header>
     <Main>
-      <SidePanel></SidePanel>
+      <LeftPanel></LeftPanel>
       <Content>
         <Routes>
-          <Route path='/' element={<h1>Home Page</h1>}></Route>
-          <Route path='/artists' element={<Artists/>}></Route>
-          <Route path='/songs' element={<Songs/>}></Route>
-          <Route path='/playlists' element={<Playlists/>}></Route>
+          <Route path='/list' element={<TodoList/>}></Route>
+          <Route path='/board' element={<h1>Board</h1>}></Route>
+          <Route path='/timeline' element={<h1>Timeline</h1>}></Route>
+          <Route path='*' element={<Page404/>}></Route>
         </Routes>
       </Content>
+      <RightPanel></RightPanel>
     </Main>
     
   </BrowserRouter>

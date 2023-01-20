@@ -7,11 +7,8 @@ const Card = ({title, subtitle, attributes}) => {
         <Styles>
             <hgroup>
                 <h2>{title}</h2>
-                <h3>{subtitle}</h3>
+                <h3>{subtitle || 'This is a description'}</h3>
             </hgroup>
-            <div>
-            {attributes.map((attribute, index) => <p key={index}><span className='label'>{attribute.label}</span> : <span className='content'>{attribute.content}</span></p>)}
-            </div>
         </Styles>
     );
 }
