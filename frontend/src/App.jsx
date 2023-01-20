@@ -5,8 +5,11 @@ import LeftPanel from './layout/left-panel'
 import RightPanel from './layout/right-panel'
 import Main from './layout/main'
 import Content from './layout/content'
-import TodoList from './pages/todo-list'
-import Page404 from './pages/404.jsx'
+import ListView from './pages/list'
+import BoardView from './pages/board'
+import TimelineView from './pages/timeline'
+import Page404 from './pages/404'
+import Board from './pages/board'
 
 
 
@@ -17,9 +20,9 @@ function App() {
       <LeftPanel></LeftPanel>
       <Content>
         <Routes>
-          <Route path='/list' element={<TodoList/>}></Route>
-          <Route path='/board' element={<h1>Board</h1>}></Route>
-          <Route path='/timeline' element={<h1>Timeline</h1>}></Route>
+          <Route path='/list' element={<ListView/>}></Route>
+          <Route path='/board' element={<BoardView/>}></Route>
+          <Route path='/timeline' element={<TimelineView/>}></Route>
           <Route path='*' element={<Page404/>}></Route>
         </Routes>
       </Content>
