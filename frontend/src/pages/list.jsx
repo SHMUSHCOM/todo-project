@@ -23,7 +23,6 @@ const TodoList = () => {
   
   return (
     <Styles>
-      <ActionsMenu/>
       <Filters className="filters"/>
       <div className="todo-header">
         <span>Owner</span>
