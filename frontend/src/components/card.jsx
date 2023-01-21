@@ -5,6 +5,7 @@ import ProgressBar from './progress-bar';
 import Tags from './tag'
 import formatDate from '../utils/date';
 import Status from './status';
+import ActionsMenu from './actions-menu';
 
 
 const Card = ({ owner, title, details, status, tags, due, progress }) => {
@@ -20,6 +21,7 @@ const Card = ({ owner, title, details, status, tags, due, progress }) => {
  
             <span> {formatDate(due)}</span>
             <ProgressBar progress={progress}/>
+            <ActionsMenu/>
 
         </Styles>
     );

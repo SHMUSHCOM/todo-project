@@ -4,6 +4,7 @@ import { todoAdded, todosFetched } from "../state/slices/todo.slice";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/card";
 import Filters from '../components/filters'
+import ActionsMenu from "../components/actions-menu";
 
 
 const TodoList = () => {
@@ -22,6 +23,7 @@ const TodoList = () => {
   
   return (
     <Styles>
+      <ActionsMenu/>
       <Filters className="filters"/>
       <div className="todo-header">
         <span>Owner</span>

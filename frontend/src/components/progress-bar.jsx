@@ -46,6 +46,8 @@ const Styles = styled.div`
     background-color: var(--light-purple);
     color: var(--purple);
 
+    font-size: 12px;
+
     .progress {
         
         width: ${({width}) => `${width}px`};
@@ -60,7 +62,7 @@ const Styles = styled.div`
         top: 0;
         left: 0;
 
-        font-size: 12px;
+        
         
         color: white;
         background-color: var(--purple);
