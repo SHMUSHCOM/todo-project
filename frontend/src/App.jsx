@@ -9,7 +9,6 @@ import ListView from './pages/list'
 import BoardView from './pages/board'
 import TimelineView from './pages/timeline'
 import Page404 from './pages/404'
-import Board from './pages/board'
 
 
 

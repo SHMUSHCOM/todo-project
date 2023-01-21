@@ -4,7 +4,7 @@ const todoSchema = new Schema({
     title: {type: String, require: true}, 
     details: String,
     owner: String,
-    status: {type: String, enum:['Done', 'In Progress', 'Not Started'], default: 'Not Started'},
+    status: {type: String, enum:['DONE', 'INPROGRESS', 'NOTSTARTED'], default: 'NOTSTARTED'},
     tags: {type: [String]}, 
     due: Date,
     progress: {type: Number, max: 100, min: 0},

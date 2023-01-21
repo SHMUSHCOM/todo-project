@@ -25,7 +25,7 @@ const Styles = styled.div`
     } 
 
     a.active {
-        background-color: #bf35ff10;
+        background-color: var(--light-purple);
         color: var(--purple);
         border-right: 5px solid var(--purple);
     }

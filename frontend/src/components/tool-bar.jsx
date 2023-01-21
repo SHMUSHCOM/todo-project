@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Avatar from './avatar';
 
 const ToolBar = () => {
     return (
@@ -8,7 +9,7 @@ const ToolBar = () => {
                 <img src='/search.svg'></img>
                 <input type="text" placeholder='Search everywhere'></input>
             </div>
-            <img src="/avatar.png" alt="Profile Image" />
+            <Avatar/>
 
             
         </Styles>

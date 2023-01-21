@@ -4,9 +4,10 @@ const todoSlice = createSlice({
     name: 'todos',
     initialState: [],
     reducers: {
-        todoAdded: (state, action) => state = [...state, action.payload]
+        todoAdded: (state, action) => state = [...state, action.payload],
+        todosFetched: (state, action) => state = action.payload,
     }
 })
 
 export default todoSlice.reducer
-export const { todoAdded } = todoSlice.actions
+export const { todoAdded, todosFetched } = todoSlice.actions

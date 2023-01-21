@@ -1,70 +1,85 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
-import { todoAdded } from "../state/slices/todo.slice";
+import { todoAdded, todosFetched } from "../state/slices/todo.slice";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/card";
-import formatDate from "../utils/date";
+import Filters from '../components/filters'
+
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const input = useRef(null);
-
-  // useEffect(() => {
-  //   async function getData() {
-  //     const response = await fetch("http://localhost:1234/songs/");
-  //     const data = await response.json();
-  //     dispatch(songsChanged(data));
-  //   }
-
-  //   getData().catch(console.log);
-  // }, []);
-
   const todos = useSelector(state => state.todos);
 
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch("http://localhost:3033/todos/");
+      const data = await response.json();
+      dispatch(todosFetched(data));
+    }
+    getData().catch(console.log)
+  }, []);
+
+  
   return (
     <Styles>
-      <h1>List View | Todo</h1>
-      <form>
-        <label htmlFor="todo">Todo</label>
-        <input type="text" ref={input}></input>
-        <button
-          type="submit"
-          onClick={() => {
-            dispatch(todoAdded({ title: input.current.value, due: Date.now() }));
-          }}
-        >
-          Add
-        </button>
-      </form>
-      <div className="container">
-        {todos.map((todo, index) => (
-          <Card key={index} title={todo.title} subtitle={todo.due}></Card>
-        ))}
+      <Filters className="filters"/>
+      <div className="todo-header">
+        <span>Owner</span>
+        <span>Title</span>
+        <span>Status</span>
+        <span>Tags</span>
+        <span>Due</span>
+        <span>Progress</span>
+      </div>
+      <div className="todo-container">
+        {todos.map((todo) => (<Card key={todo._id} {...todo}></Card>))}
       </div>
     </Styles>
   );
 };
 
 const Styles = styled.div`
+  min-width: 1000px;
   width: 100%;
-  min-height: calc(100vh - var(--header-height));
+  height: calc(100vh - var(--header-height));
   padding: 20px;
+  position: relative;
+  
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow: auto;
-  
-  form {
+
+  .todo-header {
+    width: 100%;
+    padding: 0 15px;
+    margin-top: 30px;
     display: flex;
-    gap: 5px;
+    align-items: center;
+    gap: 15px;
+
+    color: black;
+    font-weight: 100;
+    font-size: 14px;
+    
+    & > * {
+      flex-basis: 100px;
+      flex-grow: 1;
+
+      padding: 0 10px;
+
+      text-align: start;
+    }
   }
 
-  h1 {
-    position: sticky;
-    top: 0;
-  }
+  .todo-container {
+    border-top: 1px solid var(--very-light-grey);
+    border-radius: 5px;
 
-  .container {
+    & > :first-child{
+      border-top: 0px;
+    }
+
+    overflow: scroll;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;

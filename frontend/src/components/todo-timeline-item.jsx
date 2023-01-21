@@ -1,14 +1,15 @@
 import React from "react";
 import styled from 'styled-components'
+import {formatTime} from '../utils/date'
 
-const TodoTimelineItem = ({type}) => {
+const TodoTimelineItem = ({type, title, due, details}) => {
   return (
     <Styles>
       <div className={`todo-item ${type}`}>
         <div className={`milestone `} />
         <hgroup>
-          <h2>10:00 | Action Item</h2>
-          <h3>Details of what needs to be done</h3>
+          <h2>{formatTime(due)} | {title}</h2>
+          <h3>{details}</h3>
         </hgroup>
       </div>
     </Styles>
@@ -20,7 +21,6 @@ const Styles = styled.div`
   .todo-item {
         display: flex;
         align-items: center;
-        /* justify-content: space-between; */
         gap: 15px;
     }
 
@@ -33,8 +33,8 @@ const Styles = styled.div`
     }
 
     .milestone {
-        width: 15px;
-        height: 15px;
+        min-width: 15px;
+        min-height: 15px;
         border-radius: 50%;
     }
 

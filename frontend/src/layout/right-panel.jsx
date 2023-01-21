@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import TodoTimelineItem from "../components/todo-timeline-item";
+import { isSameDay } from "../utils/date";
 
 const RightPanel = () => {
+  const todos = useSelector(state => state.todos).filter( todo => isSameDay(todo.due, '2020-07-19'))
+
   return (
-    <Styles className="panel">
+    false ?? <Styles className="panel">
       <h1>Due Today</h1>
       <div className="timeline">
-        <TodoTimelineItem type="past" />
-        <TodoTimelineItem type="past" />
-        <TodoTimelineItem type="active" />
-        <TodoTimelineItem type="future" />
-        <TodoTimelineItem type="future" />
-        <TodoTimelineItem type="future" />
+        {todos.map( todo => <TodoTimelineItem key={todo._id} type="active" {...todo}></TodoTimelineItem>)}
       </div>
     </Styles>
   );
