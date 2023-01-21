@@ -56,7 +56,7 @@ const Styles = styled.div`
     background-color: white;
     
 
-    & > * {
+    & > *:not(.actions-menu) {
         flex-basis: 0;
         flex-grow: 1;
         overflow: scroll;

@@ -18,7 +18,7 @@ const ActionsMenu = () => {
 
 
 const Styles = styled.div`
-    flex-grow: 0;
+    flex-grow: 0;  
     cursor: pointer;
     position: relative;
     overflow: visible;
