@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 const ProgressBar = ({progress}) => {
-    const hasProgressed = progress > 20
+    const hasProgressed = Number(progress) > 20
     const outer = useRef(null)
     const [width, setWidth] = useState(0)
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Button from './button'
-import Status from './status';
+import Button from '../../components/button'
+import Status from '../../components/status-item';
 
 const Filters = () => {
     const todos = useSelector( state=>state.todos)

@@ -4,6 +4,10 @@ export default function formatDate(date){
     return dayjs(date).format("DD/MM/YYYY")
 }
 
+export function formatDatePicker(date){
+    return dayjs(date).format("YYYY-MM-DD")
+}
+
 export function formatTime(date){
     return dayjs(date).format("HH:mm")
 }

@@ -16,10 +16,14 @@ const Styles = styled.div`
 
 
     span {
-        padding: 5px 10px;
+        padding: 7px 15px;
         border-radius: 50px;
+
         background-color: var(--light-purple);
+        color: var(--purple);
         font-size: 14px;
+
+        user-select: none;
 
     }
 

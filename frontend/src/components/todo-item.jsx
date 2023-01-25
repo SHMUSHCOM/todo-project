@@ -1,23 +1,26 @@
 import React from 'react';
-import styled from 'styled-components'
 import Avatar from './avatar';
 import ProgressBar from './progress-bar';
 import Tags from './tag'
-import formatDate from '../utils/date';
-import Status from './status';
+import Status from './status-item';
 import ActionsMenu from './actions-menu';
 
+import styled from 'styled-components'
+import formatDate from '../utils/date';
+import { useDispatch, useSelector } from 'react-redux';
+import { todoSelected } from '../state/slices/app.slice';
 
-const Card = ({ owner, title, details, status, tags, due, progress }) => {
+const TodoItem = ({ _id, owner, title, status, tags, due, progress }) => {
+    const dispatch = useDispatch()
     return (
-        <Styles >
+        <Styles tabindex="0" onClick={()=> {dispatch(todoSelected(_id))}} >
             <div className='owner'>
                 <Avatar/>
                 <span>{owner}</span>
             </div>
-            <span>{title}</span>
+            <span className='title'>{title}</span>
             <Status status={status}></Status>
-            <Tags tags={tags}></Tags>
+            <Tags className='tags' tags={tags}></Tags>
  
             <span> {formatDate(due)}</span>
             <ProgressBar progress={progress}/>
@@ -28,6 +31,38 @@ const Card = ({ owner, title, details, status, tags, due, progress }) => {
 }
 
 const Styles = styled.div`
+    width: 100%;
+    height: 70px;
+    padding: 15px;
+    border: 1px solid var(--very-light-grey);
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+    gap: 30px;
+
+    font-weight: 100;
+    background-color: white;
+
+    & > *:not(.actions-menu) {
+        flex-basis: 0;
+        flex-grow: 1;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+    }
+
+    .tags {
+        overflow: scroll;
+    }
+    
+    &:hover, &:focus {
+        border: 1px solid var(--purple);
+        box-shadow:  1px 1px 8px 2px #afafaf39; 
+    }
 
     .owner {
         display: flex;
@@ -35,45 +70,10 @@ const Styles = styled.div`
         gap: 10px;
 
         img {
-        max-height: 30px;
+            max-height: 30px;
+        }
     }
 
-    }
-
-
-    flex-basis: 100%;
-    height: 70px;
-    padding: 15px;
-    border: 1px solid var(--very-light-grey);
-    border-radius: 5px;
-    
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 30px;
-
-    font-weight: 100;
-    background-color: white;
-    
-
-    & > *:not(.actions-menu) {
-        flex-basis: 0;
-        flex-grow: 1;
-        overflow: scroll;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    &:hover {
-        border: 1px solid var(--purple);
-        /* box-shadow: 2px 2px 7px #31083026;  */
-        box-shadow:  1px 1px 8px 2px #afafaf39;
-    }
-
-
-
-
-    
 `
 
-export default Card;
+export default TodoItem;

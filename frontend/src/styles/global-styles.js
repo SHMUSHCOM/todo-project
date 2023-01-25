@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
+    height: 100%;
     margin:0;
     padding: 0;
   }
@@ -27,6 +28,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding:0;
+    height: 100%;
     display: flex;
     place-items: center;
     min-width: 320px;
@@ -37,7 +39,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
 
-  form, input {
+  form, input, textarea {
     font-family: inherit;
   }
 
