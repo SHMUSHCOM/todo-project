@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import {FiMoreVertical} from 'react-icons/fi'
-const ActionsMenu = () => {
+import { useDispatch } from 'react-redux';
+import { todoDeleted } from '../state/slices/todo.slice';
+const ActionsMenu = ({id}) => {
+    const dispatch= useDispatch()
     return (
         <Styles className='actions-menu'>
             <FiMoreVertical/>
             <div className="menu">
                 <h4>Edit</h4>
                 <h4>Complete</h4>
-                <h4>Delete</h4>
+                <h4 onClick={() => dispatch(todoDeleted(id))}>Delete</h4>
                 <h4>Move up</h4>
                 <h4>Move down</h4>
             </div>

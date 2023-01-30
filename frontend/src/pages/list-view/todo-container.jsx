@@ -7,7 +7,11 @@ import { todosFetched } from "../../state/slices/todo.slice";
 
 const TodoContainer = () => {
     const dispatch = useDispatch();
-    const todos = useSelector(state => state.todos);
+    const filter = useSelector( state => state.app.selectedFilter)
+    const todos = useSelector(state => state.todos).filter( todo => {
+        if (!filter) return todo
+        return todo.status == filter
+    } );
   
     useEffect(() => {
       async function getData() {

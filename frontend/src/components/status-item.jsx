@@ -72,19 +72,19 @@ const Styles = styled.div`
         display: grid;
         place-items: center;
 
-        background-color:${ ({status})=>{
+        ${ ({status})=>{
             switch(STATUS[status]){
                 case STATUS.DONE:
-                    return '#D2FFCB';
+                    return 'background-color: #D2FFCB';
 
                 case STATUS.INPROGRESS:
-                    return '#fffbd5';
+                    return 'background-color: #fffbd5';
 
                 case STATUS.NOTSTARTED:
-                    return '#FFEBEB';
+                    return 'background-color: #FFEBEB';
                 
                 default: 
-                    return '#04B000';
+                    return '';
             }
         }}
 

@@ -13,7 +13,6 @@ const ListView = () => {
   
   return (
     <Styles>
-      <div className="long-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, explicabo.</div>
       <Filters className="filters"/>
       <TodoHeader/>
       <TodoContainer/>

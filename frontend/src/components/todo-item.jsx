@@ -27,7 +27,7 @@ const TodoItem = ({ _id, owner, title, status, tags, due, progress }) => {
  
             <span> {formatDate(due)}</span>
             <ProgressBar progress={progress}/>
-            <ActionsMenu/>
+            <ActionsMenu id={_id}/>
 
         </Styles>
     );

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Tags = ({tags}) => {
     return (
         <Styles className='tags'>
-           {tags.map(tag => <span key={tag}>{tag}</span>)} 
+           {tags?.map(tag => <span key={tag}>{tag}</span>)} 
         </Styles>
     );
 }

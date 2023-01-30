@@ -1,97 +1,134 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import Button from '../../components/button'
-import Status from '../../components/status-item';
+import React, { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { todoAdded } from "../../state/slices/todo.slice";
+import styled from "styled-components";
+import Button from "../../components/button";
+import Status from "../../components/status-item";
+import { filterSelected } from "../../state/slices/app.slice";
 
 const Filters = () => {
-    const todos = useSelector( state=>state.todos)
-    const doneTodos = todos.filter(todo=>todo.status == 'DONE')
-    const inprogressTodos = todos.filter(todo=>todo.status == 'INPROGRESS')
-    const notstartedTodos = todos.filter(todo=>todo.status == 'NOTSTARTED')
-    console.log(doneTodos.length)
-    return (
-        <Styles>
-            <div className="primary filter">
-                <div className="content">
-                    <h4>All Tasks</h4>
-                    <h2>{todos.length}</h2>
-                    <Button>Create New Task</Button>
-                </div>
-            </div>
-            <div className="secondary filter">
-                <div className="not-started content">
-                    <Status status='NOTSTARTED' vertical={true} large={true}/>
-                    <h2>{notstartedTodos.length}</h2>
-                </div>
-                <div className="in-progress content">
-                    <Status status='INPROGRESS' vertical={true} large={true}/>
-                    <h2>{inprogressTodos.length}</h2>
-                </div>
-                <div className="done content">
-                    <Status status='DONE' vertical={true} large={true}/>
-                    <h2>{doneTodos.length}</h2>
-                </div>
-            </div>
-        </Styles>
-    );
-}
-
+  const todos = useSelector(state => state.todos);
+  const filter = useSelector(state => state.app.selectedFilter)
+  const doneTodos = todos.filter(todo => todo.status == "DONE");
+  const inprogressTodos = todos.filter(todo => todo.status == "INPROGRESS");
+  const notstartedTodos = todos.filter(todo => todo.status == "NOTSTARTED");
+  const dispatch = useDispatch();
+  const emptyTodo = {
+    _id: Math.random().toString(36).toUpperCase().split(".")[1],
+    owner: "",
+    title: "",
+    details: "",
+    status: "",
+    tags: [],
+    due: "1970-01-01",
+    progress: 0,
+  };
+  console.log(filter)
+  return (
+    
+    <Styles filter={filter}>
+      <div className="primary filter" onClick={() => dispatch(filterSelected(null))}>
+        <div className="content">
+          <h4>All Tasks</h4>
+          <h2>{todos.length}</h2>
+          <Button onClick={() => dispatch(todoAdded(emptyTodo))}>
+            Create New Task
+          </Button>
+        </div>
+      </div>
+      <div className="secondary filter" >
+        <div className="not-started content" onClick={() => dispatch(filterSelected('NOTSTARTED'))}>
+          <Status status="NOTSTARTED" vertical={true} large={true}  />
+          <h2>{notstartedTodos.length}</h2>
+        </div>
+        <div className="in-progress content" onClick={() => dispatch(filterSelected('INPROGRESS'))}>
+          <Status status="INPROGRESS" vertical={true} large={true} />
+          <h2>{inprogressTodos.length}</h2>
+        </div>
+        <div className="done content" onClick={() => dispatch(filterSelected('DONE'))}>
+          <Status status="DONE" vertical={true} large={true} />
+          <h2>{doneTodos.length}</h2>
+        </div>
+      </div>
+    </Styles>
+  );
+};
 
 const Styles = styled.div`
+  display: flex;
+  gap: 30px;
+  position: sticky;
+  top: 0;
+
+  .filter {
+    min-height: 200px;
+    border-radius: 5px;
     display: flex;
-    gap: 30px;
-    position: sticky;
-    top: 0;
+    justify-content: space-around;
+    align-items: center;
 
-    .filter {
-        min-height: 200px;
-        border-radius: 5px;
+    h2 {
+      font-weight: 900;
+      font-size: 30px;
+    }
+
+    h4 {
+      font-weight: 200;
+      font-size: 14px;
+      color: var(--purple);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      gap: 20px;
+    }
+  }
+
+  .primary {
+    min-width: 200px;
+    border: 1px solid var(--purple);
+    background-color: var(--light-purple);
+  }
+
+  .secondary {
+    flex-basis: 100%;
+    align-items: stretch;
+    border: 1px solid var(--very-light-grey);
+    background-color: white;
+
+    
+
+    .content {
         display: flex;
-        justify-content: space-around;
-        align-items: center;
+        justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      flex-basis: 120px;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
 
-        h2 {
-            font-weight: 900;
-            font-size: 30px;
-        }
-
-        h4 {
-            font-weight: 200;
-            font-size: 14px;
-            color: var(--purple)
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-evenly;
-            gap: 20px;
-        }
+      &:hover {
+        border-bottom: 3px solid var(--purple);
     }
 
-    .primary {
-    
-        min-width: 200px;
-        border: 1px solid var(--purple);
-        background-color: var(--light-purple);
     }
+  }
 
-    .secondary {
-        
-        flex-basis: 100%;
-        border: 1px solid var(--very-light-grey);
-        background-color: white;
-
-        .content {
-
-            align-items: center;
+  ${({filter}) => {
+        switch(filter) {
+            case 'NOTSTARTED':
+                return ` .secondary .not-started.content {border-bottom: 3px solid var(--purple);}`
+            case 'INPROGRESS':
+                return ` .secondary .in-progress {border-bottom: 3px solid var(--purple);}`
+            case 'DONE':
+                return ` .secondary .done {border-bottom: 3px solid var(--purple);}`
+            default:
+                return ''
         }
-    }
-
-
-    
-`
+    }}
+`;
 
 export default Filters;
