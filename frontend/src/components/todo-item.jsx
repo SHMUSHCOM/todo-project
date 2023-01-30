@@ -12,8 +12,11 @@ import { todoSelected } from '../state/slices/app.slice';
 
 const TodoItem = ({ _id, owner, title, status, tags, due, progress }) => {
     const dispatch = useDispatch()
+    const isSelected = useSelector( state => state.app.selectedTodo == _id )
+
+    console.log(isSelected)
     return (
-        <Styles tabindex="0" onClick={()=> {dispatch(todoSelected(_id))}} >
+        <Styles isSelected={isSelected} onClick={()=> {dispatch(todoSelected(_id))}} >
             <div className='owner'>
                 <Avatar/>
                 <span>{owner}</span>
@@ -31,6 +34,7 @@ const TodoItem = ({ _id, owner, title, status, tags, due, progress }) => {
 }
 
 const Styles = styled.div`
+
     width: 100%;
     height: 70px;
     padding: 15px;
@@ -64,10 +68,23 @@ const Styles = styled.div`
         box-shadow:  1px 1px 8px 2px #afafaf39; 
     }
 
+    ${ ({isSelected})=>{
+        return isSelected 
+            ? `border: 1px solid var(--purple); box-shadow:  1px 1px 8px 2px #afafaf39; `
+            : ``
+    }}
+    
+
     .owner {
         display: flex;
         align-items: center;
         gap: 10px;
+
+        span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
         img {
             max-height: 30px;

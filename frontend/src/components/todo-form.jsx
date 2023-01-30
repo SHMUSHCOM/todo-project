@@ -1,62 +1,80 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import StatusSelect from './status-select';
+import {OPTIONS}  from './status-select'
 import Button from './button';
 import { useSelector, useDispatch } from 'react-redux';
 import { todoUpdated } from '../state/slices/todo.slice';
 import {formatDatePicker} from '../utils/date';
+import {isEqual} from 'lodash'
+
+
 
 const TodoForm = () => {
     const dispatch = useDispatch()
     const todos = useSelector( state => state.todos)
     const todo = useSelector( state => todos.find(todo => todo._id == state.app.selectedTodo) )
-    const [formData, setFormData] = useState(todo)
+    const [formData, setFormData] = useState(todo || {})
     const [selectState, setSelectState] = useState()
-    console.log(formData)
+
+    const updateForm = ()=>{
+        setFormData({...todo})
+        const option = OPTIONS.find(option => option.value == todo?.status)
+        setSelectState(option)
+    }
+
+    const formIsDirty = ()=> !isEqual(formData, todo)
     
     useEffect(()=> {
-        setFormData(todo)
+        console.log({todo})
+        updateForm()
     } ,[todo])
 
-    useEffect( ()=>{
+
+    useEffect(() => {
         setFormData({...formData, status: selectState?.value})
     },[selectState])
     
+    console.log({todo})
+    console.log({formData})
     return (
-        <Styles>
-            <form onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}>
+       <Styles>
+            <form >
                 <div className="input">
                     <label htmlFor="owner">Owner</label>
-                    <input type="text" name="owner" id="owner" placeholder='Enter an owner' value={formData.owner} />
+                    <input type="text" name="owner" id="owner" placeholder='Enter an owner' value={formData.owner} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
                 </div>
                 <div className="input">
                     <label htmlFor="title">Title</label>
-                    <input type="text" name="title" id="title" placeholder='Enter an title' value={formData.title}/>
+                    <input type="text" name="title" id="title" placeholder='Enter an title' value={formData.title} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
                 </div>
                 <div className="input">
                     <label htmlFor="details">Details</label>
-                    <textarea type="text" name="details" id="details" placeholder='Enter details' value={formData.details}/>
+                    <textarea type="text" name="details" id="details" placeholder='Enter details' value={formData.details} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
                 </div>
                 <div className="input">
                     <label htmlFor="status">Status</label>
-                    <StatusSelect selectedStatus={selectState} setSelectedStatus={setSelectState}/>
+                    <StatusSelect value={selectState} setValue={setSelectState}/>
                 </div>
                 <div className="input">
                     <label htmlFor="tags">Tags (comma separated)</label>
-                    <input type="text" name="tags" id="tags" placeholder='Enter tags' value={formData.tags}/>
+                    <input type="text" name="tags" id="tags" placeholder='Enter tags' value={formData.tags} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value.split(',')})}}/>
                 </div>
                 <div className="input">
                     <label htmlFor="due">Due date</label>
-                    <input type="date" name="due" id="due" value={formatDatePicker(formData.due)}/>
+                    <input type="date" name="due" id="due" value={formatDatePicker(formData.due)} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
                 </div>
                 <div className="input">
                     <label htmlFor="progress">Progress (% completed)</label>
-                    <input type="number" name="progress" id="progress" placeholder='Enter progress' min={0} max={100} value={formData.progress}/>
+                    <input type="number" name="progress" id="progress" placeholder='Enter progress' min={0} max={100} value={formData.progress}  onChange={(event)=>{setFormData({...formData, ['progress']: Number(event.target.value)})}}/>
                 </div>                
             </form>
+
+
             <div className="buttons">
-                <Button onClick={()=>{ dispatch(todoUpdated(formData))}} >Save</Button>
-                <Button primary={false}>Dismiss changes</Button>
+                <Button type='submit' onClick={()=>{ dispatch(todoUpdated(formData))}} >Save</Button>
+                <Button primary={false} onClick={updateForm}>Dismiss changes</Button>
+                {formIsDirty() && <h6>Unsaved Changes</h6>} 
             </div>
         </Styles>
     );
@@ -101,7 +119,12 @@ const Styles = styled.div`
     .buttons {
         display: flex;
         justify-content: flex-start;
+        align-items: flex-end;
         gap: 10px;
+
+        h6 {
+            color: red;
+        }
     }
 `
 export default TodoForm;

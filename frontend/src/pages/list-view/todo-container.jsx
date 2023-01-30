@@ -33,13 +33,6 @@ const Styles = styled.div`
     overflow: scroll;
 
     .todo-container {
-        border-top: 1px solid var(--very-light-grey);
-        border-radius: 5px;
-
-        & > :first-child{
-        border-top: 0px;
-        }
-
         
         display: flex;
         flex-wrap: wrap;

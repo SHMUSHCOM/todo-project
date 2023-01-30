@@ -6,9 +6,10 @@ const todoSlice = createSlice({
     reducers: {
         todoAdded: (state, action) => state = [...state, action.payload],
         todoUpdated: (state, action) => {
-            const todos = [...state]
-            const todoIndex = todos.findIndex( todo => todo._id == action.payload._id)
-            return [...todos.slice(0,todoIndex), action.payload, ...todos.slice(todoIndex)]
+            // const todos = [...state]
+            const todoIndex = state.findIndex( todo => todo._id == action.payload._id)
+            state.splice(todoIndex,1,action.payload)
+            // return [...todos.slice(0,todoIndex), action.payload, ...todos.slice(todoIndex)]
         },
         todosFetched: (state, action) => state = action.payload,
     }

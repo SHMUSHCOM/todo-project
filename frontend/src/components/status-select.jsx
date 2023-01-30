@@ -3,13 +3,16 @@ import styled from 'styled-components'
 import Select from 'react-select'
 import StatusItem from './status-item'
 
-const StatusSelect = ({selectedStatus, setSelectedStatus}) => {
-    const options = [
-        {value: 'NOTSTARTED', label:<StatusItem status='NOTSTARTED'/> },
-        {value: 'INPROGRESS', label:<StatusItem status='INPROGRESS'/> },
-        {value: 'DONE', label:<StatusItem status='DONE'/> },
-    ]
-    const defaultValue = {value: 'NOTSTARTED', label:<StatusItem status='NOTSTARTED'/> };
+
+export const OPTIONS = [
+    {value: 'NOTSTARTED', label:<StatusItem status='NOTSTARTED'/> },
+    {value: 'INPROGRESS', label:<StatusItem status='INPROGRESS'/> },
+    {value: 'DONE', label:<StatusItem status='DONE'/> },
+]
+
+const StatusSelect = ({value, setValue}) => {
+    
+    // const defaultValue = selectedStatus ?? {value: 'NOTSTARTED', label:<StatusItem status='NOTSTARTED'/> };
 
     const customStyles = {
         option: (defaultStyles, state) => ({
@@ -34,9 +37,10 @@ const StatusSelect = ({selectedStatus, setSelectedStatus}) => {
         <Styles>
             
                 <Select         
-                    defaultValue={defaultValue}
-                    onChange={setSelectedStatus}
-                    options={options}
+                    // defaultValue={defaultValue}
+                    onChange={(event)=>{setValue(event)}}
+                    value={value}
+                    options={OPTIONS}
                     styles={customStyles}
                 ></Select>
             

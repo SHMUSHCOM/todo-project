@@ -39,7 +39,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
 
-  form, input, textarea {
+  form, input, textarea, button {
     font-family: inherit;
   }
 

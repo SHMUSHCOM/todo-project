@@ -11,15 +11,15 @@ const ProgressBar = ({progress}) => {
         const handleResize = () => {
             const [outerWidth] = (window.getComputedStyle(outer.current).width).split('px')
             const innerWidth = parseInt( Math.ceil((progress / 100) * outerWidth) )
-            setWidth(innerWidth)
+            setWidth(innerWidth) 
         }
         handleResize()
         window.addEventListener('resize', handleResize)
         return () => {
             window.removeEventListener('resize', handleResize)
         }
-    }, [])
-
+    }, [progress])
+    
     return (
         <Styles width={width} ref={outer}>
             {!hasProgressed ? `${progress}%` : ''}
