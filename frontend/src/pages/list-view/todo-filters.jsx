@@ -4,11 +4,11 @@ import { todoAdded } from "../../state/slices/todo.slice";
 import styled from "styled-components";
 import Button from "../../components/button";
 import Status from "../../components/status-item";
-import { filterSelected } from "../../state/slices/app.slice";
+import { statusFilterSelected } from "../../state/slices/app.slice";
 
 const Filters = () => {
   const todos = useSelector(state => state.todos);
-  const filter = useSelector(state => state.app.selectedFilter)
+  const filter = useSelector(state => state.app.statusFilter)
   const doneTodos = todos.filter(todo => todo.status == "DONE");
   const inprogressTodos = todos.filter(todo => todo.status == "INPROGRESS");
   const notstartedTodos = todos.filter(todo => todo.status == "NOTSTARTED");
@@ -20,14 +20,15 @@ const Filters = () => {
     details: "",
     status: "",
     tags: [],
-    due: "1970-01-01",
+    due: Date.now(),
     progress: 0,
+    points: 0,
   };
   console.log(filter)
   return (
     
     <Styles filter={filter}>
-      <div className="primary filter" onClick={() => dispatch(filterSelected(null))}>
+      <div className="primary filter" onClick={() => dispatch(statusFilterSelected(null))}>
         <div className="content">
           <h4>All Tasks</h4>
           <h2>{todos.length}</h2>
@@ -37,15 +38,15 @@ const Filters = () => {
         </div>
       </div>
       <div className="secondary filter" >
-        <div className="not-started content" onClick={() => dispatch(filterSelected('NOTSTARTED'))}>
+        <div className="not-started content" onClick={() => dispatch(statusFilterSelected('NOTSTARTED'))}>
           <Status status="NOTSTARTED" vertical={true} large={true}  />
           <h2>{notstartedTodos.length}</h2>
         </div>
-        <div className="in-progress content" onClick={() => dispatch(filterSelected('INPROGRESS'))}>
+        <div className="in-progress content" onClick={() => dispatch(statusFilterSelected('INPROGRESS'))}>
           <Status status="INPROGRESS" vertical={true} large={true} />
           <h2>{inprogressTodos.length}</h2>
         </div>
-        <div className="done content" onClick={() => dispatch(filterSelected('DONE'))}>
+        <div className="done content" onClick={() => dispatch(statusFilterSelected('DONE'))}>
           <Status status="DONE" vertical={true} large={true} />
           <h2>{doneTodos.length}</h2>
         </div>

@@ -2,16 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import Avatar from './avatar';
 
+import { useDispatch } from 'react-redux'
+import { searchFilterUpdated } from '../state/slices/app.slice'
+
+
+
+
 const ToolBar = () => {
+    const dispatch = useDispatch()
+
+    function onSearchChange(event){
+        dispatch(searchFilterUpdated(event.target.value))
+    }
+
     return (
         <Styles>
             <div className='search'>
                 <img src='/search.svg'></img>
-                <input type="text" placeholder='Search everywhere'></input>
+                <input type="text" placeholder='Search everywhere' onChange={onSearchChange}></input>
             </div>
-            <Avatar/>
-
-            
+            <Avatar/>     
         </Styles>
     );
 }

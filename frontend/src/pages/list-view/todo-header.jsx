@@ -7,9 +7,10 @@ const TodoHeader = () => {
             <div className="todo-header">
                 <span>Owner</span>
                 <span>Title</span>
-                <span>Status</span>
                 <span>Tags</span>
                 <span>Due</span>
+                <span>Status</span>
+                <span className='points'>Points</span>
                 <span>Progress</span>
             </div>
         </Styles>
@@ -36,6 +37,13 @@ const Styles = styled.div`
       padding: 0 10px;
 
       text-align: start;
+    }
+
+    .points {
+        flex-basis: 0;
+        flex-grow: 0;
+        padding-right: 40px;
+
     }
   }
 `

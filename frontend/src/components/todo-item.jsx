@@ -10,7 +10,7 @@ import formatDate from '../utils/date';
 import { useDispatch, useSelector } from 'react-redux';
 import { todoSelected } from '../state/slices/app.slice';
 
-const TodoItem = ({ _id, owner, title, status, tags, due, progress }) => {
+const TodoItem = ({ _id, owner, title, status, tags, due, progress, points }) => {
     const dispatch = useDispatch()
     const isSelected = useSelector( state => state.app.selectedTodo == _id )
 
@@ -22,10 +22,11 @@ const TodoItem = ({ _id, owner, title, status, tags, due, progress }) => {
                 <span>{owner}</span>
             </div>
             <span className='title'>{title}</span>
-            <Status status={status}></Status>
             <Tags className='tags' tags={tags}></Tags>
  
             <span> {formatDate(due)}</span>
+            <Status status={status}></Status>
+            <span className='points'> {points} </span>
             <ProgressBar progress={progress}/>
             <ActionsMenu id={_id}/>
 
@@ -49,7 +50,7 @@ const Styles = styled.div`
     font-weight: 100;
     background-color: white;
 
-    & > *:not(.actions-menu) {
+    & > *:not(.actions-menu, .points) {
         flex-basis: 0;
         flex-grow: 1;
 
@@ -57,6 +58,12 @@ const Styles = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
 
+    }
+
+    .points {
+        width: 15px;
+        display: flex;
+        justify-content: center;
     }
 
     .tags {

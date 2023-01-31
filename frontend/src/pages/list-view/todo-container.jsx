@@ -7,10 +7,15 @@ import { todosFetched } from "../../state/slices/todo.slice";
 
 const TodoContainer = () => {
     const dispatch = useDispatch();
-    const filter = useSelector( state => state.app.selectedFilter)
+    const statusFilter = useSelector( state => state.app.statusFilter)
+    const searchFilter = useSelector( state => state.app.searchFilter)
+
     const todos = useSelector(state => state.todos).filter( todo => {
-        if (!filter) return todo
-        return todo.status == filter
+        if (!statusFilter && !searchFilter) return true
+        if (!statusFilter) return (JSON.stringify(todo).toLowerCase().includes(searchFilter.toLowerCase()))
+        if (!searchFilter) return (todo.status == statusFilter )
+        return ((todo.status == statusFilter ) && (JSON.stringify(todo).toLowerCase().includes(searchFilter.toLowerCase())))
+
     } );
   
     useEffect(() => {

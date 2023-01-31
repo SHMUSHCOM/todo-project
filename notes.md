@@ -11,6 +11,13 @@
 
 
 
+
+- You work feature by feature? Or by technology
+- What should be responsible for filtering?
+- How to allow the number field to be empty?
+- How to set date to be relative?  
+
+
 **Course**
 - Sockets?
 - Forms? Formik?

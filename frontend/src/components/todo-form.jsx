@@ -50,11 +50,7 @@ const TodoForm = () => {
                 </div>
                 <div className="input">
                     <label htmlFor="details">Details</label>
-                    <textarea type="text" name="details" id="details" placeholder='Enter details' value={formData.details} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
-                </div>
-                <div className="input">
-                    <label htmlFor="status">Status</label>
-                    <StatusSelect value={selectState} setValue={setSelectState}/>
+                    <textarea type="text" rows={8} name="details" id="details" placeholder='Enter details' value={formData.details} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
                 </div>
                 <div className="input">
                     <label htmlFor="tags">Tags (comma separated)</label>
@@ -63,6 +59,14 @@ const TodoForm = () => {
                 <div className="input">
                     <label htmlFor="due">Due date</label>
                     <input type="date" name="due" id="due" value={formatDatePicker(formData.due)} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
+                </div>
+                <div className="input">
+                    <label htmlFor="status">Status</label>
+                    <StatusSelect value={selectState} setValue={setSelectState}/>
+                </div>
+                <div className="input">
+                    <label htmlFor="points">Points</label>
+                    <input type="number" name="points" id="points" placeholder='Enter points' min={0} max={20} value={formData.points}  onChange={(event)=>{setFormData({...formData, ['points']: Number(event.target.value)})}}/>
                 </div>
                 <div className="input">
                     <label htmlFor="progress">Progress (% completed)</label>
