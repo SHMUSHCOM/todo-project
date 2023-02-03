@@ -19,7 +19,11 @@ const TodoForm = () => {
     const todos = useSelector( state => state.todos)
     const todo = useSelector( state => todos.find(todo => todo._id == state.app.selectedTodo) )
     
-    const { register, handleSubmit, watch, formState: {errors} } = useForm()
+    const { register, handleSubmit, watch, formState: {errors} } = useForm({
+        defaultValues: 
+    })
+
+
     const [formData, setFormData] = useState(todo || {})
     const [selectState, setSelectState] = useState()
 
@@ -41,51 +45,49 @@ const TodoForm = () => {
         setFormData({...formData, status: selectState?.value})
     },[selectState])
     
-    console.log({todo})
-    console.log({formData})
     return (
        <Styles>
-            <form >
-                <div className="input">
-                    <label htmlFor="owner">Owner</label>
-                    <input type="text" name="owner" id="owner" placeholder='Enter an owner' value={formData.owner} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
+            <form onSubmit={handleSubmit((data) => console.log(data))} >
+                <div className="fields">
+                    <div className="input">
+                        <label htmlFor="owner">Owner</label>
+                        <input type="text" {...register('owner')}/>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="title">Title</label>
+                        <input type="text" {...register('title')}/>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="details">Details</label>
+                        <textarea type="text" rows={8} {...register('details')}/>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="tags">Tags (comma separated)</label>
+                        <input type="text" {...register('tags')}/>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="due">Due date</label>
+                        <input type="date" {...register('due')}/>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="status">Status</label>
+                        <StatusSelect value={selectState} setValue={setSelectState}/>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="points">Points</label>
+                        <input type="number" {...register('points')}/>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="progress">Progress (% completed)</label>
+                        <input type="number" {...register('progress')}/>
+                    </div>
                 </div>
-                <div className="input">
-                    <label htmlFor="title">Title</label>
-                    <input type="text" name="title" id="title" placeholder='Enter an title' value={formData.title} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
-                </div>
-                <div className="input">
-                    <label htmlFor="details">Details</label>
-                    <textarea type="text" rows={8} name="details" id="details" placeholder='Enter details' value={formData.details} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
-                </div>
-                <div className="input">
-                    <label htmlFor="tags">Tags (comma separated)</label>
-                    <input type="text" name="tags" id="tags" placeholder='Enter tags' value={formData.tags} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value.split(',')})}}/>
-                </div>
-                <div className="input">
-                    <label htmlFor="due">Due date</label>
-                    <input type="date" name="due" id="due" value={formatDatePicker(formData.due)} onChange={(event)=>{setFormData({...formData, [event.target.name]: event.target.value})}}/>
-                </div>
-                <div className="input">
-                    <label htmlFor="status">Status</label>
-                    <StatusSelect value={selectState} setValue={setSelectState}/>
-                </div>
-                <div className="input">
-                    <label htmlFor="points">Points</label>
-                    <input type="number" name="points" id="points" placeholder='Enter points' min={0} max={20} value={formData.points}  onChange={(event)=>{setFormData({...formData, ['points']: Number(event.target.value)})}}/>
-                </div>
-                <div className="input">
-                    <label htmlFor="progress">Progress (% completed)</label>
-                    <input type="number" name="progress" id="progress" placeholder='Enter progress' min={0} max={100} value={formData.progress}  onChange={(event)=>{setFormData({...formData, ['progress']: Number(event.target.value)})}}/>
+                <div className="buttons">
+                    <Button type='submit' >Save</Button>
+                    <Button primary={false} >Dismiss changes</Button>
+                    {formIsDirty() && <h6>Unsaved Changes</h6>} 
                 </div>                
             </form>
-
-
-            <div className="buttons">
-                <Button type='submit' onClick={()=>{ dispatch(todoUpdated(formData))}} >Save</Button>
-                <Button primary={false} onClick={updateForm}>Dismiss changes</Button>
-                {formIsDirty() && <h6>Unsaved Changes</h6>} 
-            </div>
         </Styles>
     );
 }
@@ -93,14 +95,12 @@ const TodoForm = () => {
 const Styles = styled.div`
     min-height: 100%;
     
-    display: flex; 
-    flex-direction: column;
-    justify-content: space-between;
-    
 
     form {
+        min-height: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: 20px;
     }
 
