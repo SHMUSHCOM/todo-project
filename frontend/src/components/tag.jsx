@@ -14,6 +14,8 @@ const Styles = styled.div`
     justify-content: flex-start;
     gap: 5px;
 
+    overflow: scroll;
+
 
     span {
         padding: 7px 15px;

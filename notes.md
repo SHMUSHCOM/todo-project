@@ -15,8 +15,13 @@
 - You work feature by feature? Or by technology
 - What should be responsible for filtering?
 - How to allow the number field to be empty?
-- How to set date to be relative?  
+- How to set date to be relative?
+- Where should I put the CSS ... For example I want to set the widget of the tags, in the todo item. 
+- What is GitHub fork, will it do something to my project?
+- I have two event handlers on the same button? How can I override them? 
+- Should I use a component library? 
 
+React Hook Forms
 
 **Course**
 - Sockets?

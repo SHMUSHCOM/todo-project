@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from 'react';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components'
+
 import StatusSelect from './status-select';
 import {OPTIONS}  from './status-select'
+
 import Button from './button';
 import { useSelector, useDispatch } from 'react-redux';
 import { todoUpdated } from '../state/slices/todo.slice';
+
 import {formatDatePicker} from '../utils/date';
 import {isEqual} from 'lodash'
 
@@ -14,6 +18,8 @@ const TodoForm = () => {
     const dispatch = useDispatch()
     const todos = useSelector( state => state.todos)
     const todo = useSelector( state => todos.find(todo => todo._id == state.app.selectedTodo) )
+    
+    const { register, handleSubmit, watch, formState: {errors} } = useForm()
     const [formData, setFormData] = useState(todo || {})
     const [selectState, setSelectState] = useState()
 

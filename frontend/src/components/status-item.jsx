@@ -29,7 +29,7 @@ const StatusIcon = ( props )=>{
 
 const Status = ({status=STATUS.NOTSTARTED, large=false, vertical=false}) => {
     return (
-        <Styles status={status} vertical={vertical} large={large} >
+        <Styles className='status' status={status} vertical={vertical} large={large} >
             <div className="icon-background">
                 <StatusIcon status={status} className='icon' size={large?`1.5em`:`1em`}/>
             </div>
