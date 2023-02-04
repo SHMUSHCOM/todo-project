@@ -1,12 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Avatar from './avatar';
+import Avatar from '../todo/avatar';
 
 import { useDispatch } from 'react-redux'
-import { searchFilterUpdated } from '../state/slices/app.slice'
-
-
-
+import { searchFilterUpdated } from '../../state/slices/app.slice'
 
 const ToolBar = () => {
     const dispatch = useDispatch()

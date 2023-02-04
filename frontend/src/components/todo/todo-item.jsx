@@ -3,12 +3,13 @@ import Avatar from "./avatar";
 import ProgressBar from "./progress-bar";
 import Tags from "./tag";
 import Status from "./status-item";
-import ActionsMenu from "./actions-menu";
+import ActionsMenu from "./action-menu";
 
 import styled from "styled-components";
-import formatDate from "../utils/date";
+import formatDate from "../../utils/date";
+
 import { useDispatch, useSelector } from "react-redux";
-import { todoSelected } from "../state/slices/app.slice";
+import { todoSelected } from "../../state/slices/app.slice";
 
 const TodoItem = ({
   _id,

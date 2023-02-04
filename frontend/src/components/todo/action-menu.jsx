@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {FiMoreVertical} from 'react-icons/fi'
 import { useDispatch } from 'react-redux';
-import { todoDeleted } from '../state/slices/todo.slice';
+import { todoDeleted } from '../../state/slices/todo.slice';
 
 const ActionsMenu = ({id}) => {
     const dispatch= useDispatch()

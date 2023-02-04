@@ -8,8 +8,6 @@ import Filters from './todo-filters'
 
 
 const ListView = () => {
-
-
   
   return (
     <Styles>

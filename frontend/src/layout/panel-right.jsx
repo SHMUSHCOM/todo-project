@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import TodoForm from "../components/todo-form"
+import TodoForm from "../components/todo/form"
 
 const RightPanel = () => {
   

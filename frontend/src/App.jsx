@@ -5,7 +5,7 @@ import LeftPanel from "./layout/panel-left";
 import RightPanel from "./layout/panel-right";
 import Main from "./layout/main";
 import Content from "./layout/content";
-import ListView from "./pages/list-view/list";
+import ListView from "./pages/list/todo-list";
 import BoardView from "./pages/board";
 import TimelineView from "./pages/timeline";
 import Page404 from "./pages/404-page";

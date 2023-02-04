@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { todoAdded } from "../../state/slices/todo.slice";
 import styled from "styled-components";
 import Button from "../../components/button";
-import Status from "../../components/status-item";
+import Status from "../../components/todo/status-item";
 import { statusFilterSelected } from "../../state/slices/app.slice";
 
 const Filters = () => {

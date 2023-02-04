@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components'
-import {formatTime} from '../utils/date'
+import {formatTime} from '../../utils/date'
 
 const TodoTimelineItem = ({type, title, due, details}) => {
   return (

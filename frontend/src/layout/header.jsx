@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import ToolBar from '../components/tool-bar';
+import ToolBar from '../components/navigation/tool-bar';
 
 const Header = () => {
     return (

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import NavItem from "../components/nav-item";
+import NavItem from "../components/navigation/nav-item";
 import { FiList, FiAlignLeft, FiGrid, FiGlobe } from "react-icons/fi";
 
 const LeftPanel = () => {

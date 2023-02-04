@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components';
-import TodoItem from "../../components/todo-item";
+import TodoItem from "../../components/todo/todo-item";
 
 import { useDispatch, useSelector } from "react-redux";
 import { todosFetched } from "../../state/slices/todo.slice";

@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components'
 
 import StatusSelect from './status-select';
 import {OPTIONS}  from './status-select'
 
-import Button from './button';
+import Button from '../button';
 import { useSelector, useDispatch } from 'react-redux';
-import { todoUpdated } from '../state/slices/todo.slice';
+import { todoUpdated } from '../../state/slices/todo.slice';
 
-import {formatDatePicker} from '../utils/date';
+import {formatDatePicker} from '../../utils/date';
 
 const TodoForm = () => {
     const dispatch = useDispatch()
