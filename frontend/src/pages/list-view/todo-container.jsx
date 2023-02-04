@@ -23,7 +23,7 @@ const TodoContainer = () => {
         const response = await fetch("http://localhost:3033/todos/");
         const data = await response.json();
         dispatch(todosFetched(data));
-        console.log('data fetched')
+        
       }
       getData().catch(console.log)
     }, []);

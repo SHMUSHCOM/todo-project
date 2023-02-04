@@ -24,7 +24,7 @@ const Filters = () => {
     progress: 0,
     points: 0,
   };
-  console.log(filter)
+  
   return (
     
     <Styles filter={filter}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components'
 import Select from 'react-select'
 import StatusItem from './status-item'
 
@@ -10,45 +9,31 @@ export const OPTIONS = [
     {value: 'DONE', label:<StatusItem status='DONE'/> },
 ]
 
-const StatusSelect = ({value, setValue}) => {
-    
-    // const defaultValue = selectedStatus ?? {value: 'NOTSTARTED', label:<StatusItem status='NOTSTARTED'/> };
+const StatusSelect = ({field}) => {
 
-    const customStyles = {
-        option: (defaultStyles, state) => ({
-          ...defaultStyles,
-          backgroundColor: state.isSelected ? "var(--purple)" : "white",
-          "&:hover": {
-            backgroundColor: "var(--light-purple)",
-          }
-        }),
-        control: (defaultStyles, state) => ({
-            ...defaultStyles,
-            border: state.isFocused ? "1px solid var(--purple)" : "1px solid var(--very-light-grey)",
-            outline: state.isFocused ? "1px solid var(--purple)" : "1px solid var(--very-light-grey)",
+    const customTheme = (theme) => ({
+        ...theme,
+        colors: {
+            ...theme.colors,
+            primary25: 'var(--light-purple)',
+            primary: 'var(--purple)'
+        }
+    })
 
-            "&:hover": {
-                border: "1px solid var(--purple)",
-            }
-        })
-      };
 
     return (
-        <Styles>
+        <Select         
+            {...field}
+            options={OPTIONS}
+            theme={customTheme}
             
-                <Select         
-                    // defaultValue={defaultValue}
-                    onChange={(event)=>{setValue(event)}}
-                    value={value}
-                    options={OPTIONS}
-                    styles={customStyles}
-                ></Select>
-            
-        </Styles>
+            placeholder={'Select status'}
+            noOptionsMessage={() =>  'No results'}
+        
+            isClearable
+            isSearchable
+        ></Select> 
     );
 }
 
-const Styles = styled.div`
-    
-`
 export default StatusSelect;

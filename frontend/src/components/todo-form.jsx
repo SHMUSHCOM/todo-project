@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { useForm } from 'react-hook-form';
+import React, {useEffect} from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components'
 
 import StatusSelect from './status-select';
@@ -10,52 +10,44 @@ import { useSelector, useDispatch } from 'react-redux';
 import { todoUpdated } from '../state/slices/todo.slice';
 
 import {formatDatePicker} from '../utils/date';
-import {isEqual} from 'lodash'
-
-
 
 const TodoForm = () => {
     const dispatch = useDispatch()
     const todos = useSelector( state => state.todos)
-    const todo = useSelector( state => todos.find(todo => todo._id == state.app.selectedTodo) )
+    const todo = useSelector( state => todos.find(todo => todo._id == state.app.selectedTodo))
     
-    const { register, handleSubmit, watch, formState: {errors} } = useForm({
-        defaultValues: 
+    // Transform state data into form data
+    const serializeTodo = (todo) => ({ 
+        ...todo,
+        status: OPTIONS.find( option => option.value == todo?.status),
+        tags: todo?.tags?.toString(),
+        due: formatDatePicker(todo?.due),
     })
 
-
-    const [formData, setFormData] = useState(todo || {})
-    const [selectState, setSelectState] = useState()
-
-    const updateForm = ()=>{
-        setFormData({...todo})
-        const option = OPTIONS.find(option => option.value == todo?.status)
-        setSelectState(option)
-    }
-
-    const formIsDirty = ()=> !isEqual(formData, todo)
+    // Transform form data into state data
+    const deserializeTodo = (todo) => ({
+        ...todo, 
+        status: todo?.status?.value,
+        tags: todo?.tags?.split(','),
+    })
     
-    useEffect(()=> {
-        console.log({todo})
-        updateForm()
-    } ,[todo])
-
-
-    useEffect(() => {
-        setFormData({...formData, status: selectState?.value})
-    },[selectState])
+    const { register, handleSubmit, reset, control, formState: {errors, isDirty}} = useForm({values:serializeTodo(todo)})
+    const submitData = data => dispatch(todoUpdated(deserializeTodo(data)))
+    const resetData = () => reset(serializeTodo(todo))
     
     return (
        <Styles>
-            <form onSubmit={handleSubmit((data) => console.log(data))} >
+            <form onSubmit={handleSubmit(submitData)} >
                 <div className="fields">
                     <div className="input">
                         <label htmlFor="owner">Owner</label>
-                        <input type="text" {...register('owner')}/>
+                        <input type="text" {...register('owner', { required: 'Owner required'})}/>
+                        <span className="error">{errors?.owner?.message}</span>
                     </div>
                     <div className="input">
                         <label htmlFor="title">Title</label>
-                        <input type="text" {...register('title')}/>
+                        <input type="text" {...register('title', {required: 'Title required'})}/>
+                        <span className="error">{errors?.title?.message}</span>
                     </div>
                     <div className="input">
                         <label htmlFor="details">Details</label>
@@ -71,21 +63,23 @@ const TodoForm = () => {
                     </div>
                     <div className="input">
                         <label htmlFor="status">Status</label>
-                        <StatusSelect value={selectState} setValue={setSelectState}/>
+                        <Controller control={control} name="status" rules={{required:'Status required'}} render={({field}) => <StatusSelect field={field} />} />
+                        <span className="error">{errors?.status?.message}</span>
                     </div>
                     <div className="input">
                         <label htmlFor="points">Points</label>
-                        <input type="number" {...register('points')}/>
+                        <input type="number" {...register('points', {required: 'Points required', min: {value: 1, message: "1 point minimum"}, max: {value: 20, message: "20 point maximum"}, valueAsNumber: true})} />
+                        <span className="error">{errors?.points?.message}</span>
                     </div>
                     <div className="input">
                         <label htmlFor="progress">Progress (% completed)</label>
-                        <input type="number" {...register('progress')}/>
+                        <input type="number" {...register('progress', {min: 0, max: 100, valueAsNumber: true})}/>
                     </div>
                 </div>
                 <div className="buttons">
-                    <Button type='submit' >Save</Button>
-                    <Button primary={false} >Dismiss changes</Button>
-                    {formIsDirty() && <h6>Unsaved Changes</h6>} 
+                    <Button type='submit'>Save</Button>
+                    <Button primary={false} onClick={resetData} >Dismiss changes</Button>
+                    {isDirty && <div className='error'>Unsaved Changes</div>}
                 </div>                
             </form>
         </Styles>
@@ -93,14 +87,18 @@ const TodoForm = () => {
 }
 
 const Styles = styled.div`
-    min-height: 100%;
-    
-
+    overflow: scroll;
     form {
-        min-height: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 20px;
+    }
+
+    .fields {
+        display: flex;
+        flex-direction: column;
         gap: 20px;
     }
 
@@ -131,10 +129,13 @@ const Styles = styled.div`
         justify-content: flex-start;
         align-items: flex-end;
         gap: 10px;
+        white-space: nowrap;
+    }
 
-        h6 {
-            color: red;
-        }
+    .error {
+        color: red;
+        font-size: 12px;
+        white-space: nowrap;
     }
 `
 export default TodoForm;

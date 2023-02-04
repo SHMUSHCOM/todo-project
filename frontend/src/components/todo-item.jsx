@@ -23,7 +23,7 @@ const TodoItem = ({
   const dispatch = useDispatch();
   const isSelected = useSelector(state => state.app.selectedTodo == _id);
 
-  console.log(isSelected);
+  
   return (
     <Styles
       status={status}
@@ -122,7 +122,7 @@ const Styles = styled.div`
       : ``;
   }} */
 
-  
+
 `;
 
 export default TodoItem;
