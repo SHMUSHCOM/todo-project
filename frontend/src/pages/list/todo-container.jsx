@@ -4,6 +4,7 @@ import TodoItem from "../../components/todo/todo-item";
 
 import { useDispatch, useSelector } from "react-redux";
 import { todosFetched } from "../../state/slices/todo.slice";
+import { fetchTodos } from '../../network/requests';
 
 const TodoContainer = () => {
     const dispatch = useDispatch();
@@ -19,13 +20,14 @@ const TodoContainer = () => {
     } );
   
     useEffect(() => {
-      async function getData() {
-        const response = await fetch("http://localhost:3033/todos/");
-        const data = await response.json();
+
+      async function getInitialTodoData() {
+        const data = await fetchTodos()
         dispatch(todosFetched(data));
-        
       }
-      getData().catch(console.log)
+
+      getInitialTodoData().catch(console.error)
+
     }, []);
 
     return (

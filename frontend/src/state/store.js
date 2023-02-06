@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";;
-import setLocalStorage from "./local-storage";
+import setLocalStorage from "./middleware/local-storage"
+import setServerStorage from './middleware/server-storage'
 import todoSlice from './slices/todo.slice'
 import appSlice from './slices/app.slice'
 
@@ -11,7 +12,7 @@ const store = configureStore({
     app: appSlice,
   }, 
   preloadedState: preLoadedState,
-  middleware: (getDefaultMiddleware)=> [...getDefaultMiddleware(), setLocalStorage]
+  middleware: (getDefaultMiddleware)=> [...getDefaultMiddleware(), setLocalStorage, setServerStorage]
 })
 
 export default store;

@@ -10,8 +10,6 @@
 - Is there a good way to order the imports? Components -> Hooks? 
 
 
-
-
 - You work feature by feature? Or by technology
 - What should be responsible for filtering?
 - How to allow the number field to be empty?
@@ -21,7 +19,24 @@
 - I have two event handlers on the same button? How can I override them? 
 - Should I use a component library? 
 
+
+- How to sync it with the Database? Should I sync everything from store to the db? Think to use Thunk middleware in the sameway we did the local storage? 
+
+- Keep the id's in mongo the same? 
+- What about multiple clients? Another client has deleted something on the DB? 
+
+
+
+
+
+- where to put loaders? how to handle loaders globally? suspense?  
+- How to secure socket conneciton? Socket middleware? 
+
 React Hook Forms
+
+
+
+
 
 **Course**
 - Sockets?

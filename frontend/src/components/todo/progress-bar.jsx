@@ -41,7 +41,7 @@ const Styles = styled.div`
   align-items: center;
   position: relative;
 
-  background-color: var(--light-purple);
+  background-color: white;
   color: var(--purple);
 
   font-size: 12px;
@@ -59,8 +59,8 @@ const Styles = styled.div`
     top: 0;
     left: 0;
 
-    color: white;
-    background-color: var(--purple);
+    color: var();
+    background-color: var(--light-purple);
   }
 `;
 export default ProgressBar;
