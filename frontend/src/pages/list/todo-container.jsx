@@ -11,6 +11,7 @@ const TodoContainer = () => {
     const invalidateTodos = useInvalidateTodos()
     const statusFilter = useSelector( state => state.app.statusFilter)
     const searchFilter = useSelector( state => state.app.searchFilter)
+    const selectedTodo = useSelector( state => state.app.selectedTodo)
 
     const todos = useSelector(state => state.todos).filter( todo => {
         if (!statusFilter && !searchFilter) return true
@@ -21,7 +22,7 @@ const TodoContainer = () => {
     const sortedTodos = todos.sort( (todoA, todoB) => todoA.createdAt > todoB.createdAt ? -1 : 1 )
     
     const dispatch = useDispatch()
-    dispatch(todoSelected(sortedTodos[0]?._id))
+    if (!sortedTodos.find( todo => todo._id == selectedTodo)) dispatch(todoSelected(sortedTodos[0]?._id))
 
    
     return (

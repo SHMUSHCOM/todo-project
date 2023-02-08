@@ -68,18 +68,17 @@ const TodoForm = () => {
                     </div>
                     <div className="input">
                         <label htmlFor="points">Points</label>
-                        <input type="number" {...register('points', {required: 'Points required', min: {value: 1, message: "1 point minimum"}, max: {value: 20, message: "20 point maximum"}, valueAsNumber: true})} />
+                        <input type="number" {...register('points', {max: {value: 20, message: "20 point maximum"}, valueAsNumber: true})} />
                         <span className="error">{errors?.points?.message}</span>
                     </div>
                     <div className="input">
                         <label htmlFor="progress">Progress (% completed)</label>
-                        <input type="number" {...register('progress', {min: 0, max: 100, valueAsNumber: true})}/>
+                        <input type="range" {...register('progress', {min: 0, max: 100, valueAsNumber: true})}/>
                     </div>
                 </div>
                 <div className="buttons">
                     <Button type='submit'>Save</Button>
-                    <Button primary={false} onClick={resetData} >Dismiss changes</Button>
-                    {isDirty && <div className='error'>Unsaved Changes</div>}
+                    {isDirty && <Button primary={false} onClick={resetData} >Dismiss changes</Button>}
                 </div>                
             </form>
         </Styles>
@@ -136,6 +135,10 @@ const Styles = styled.div`
         color: red;
         font-size: 12px;
         white-space: nowrap;
+    }
+
+    input[type=”range”]::-webkit-slider-runnable-track, input[type=”range”]::-webkit-slider-thumb, input[type=”range”]::-moz-range-thumb, input[type=”range”]::-moz-range-track {
+        background-color: var(--purple);
     }
 `
 export default TodoForm;

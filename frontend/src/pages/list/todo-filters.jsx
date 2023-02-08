@@ -36,8 +36,10 @@ const Filters = () => {
     <Styles filter={filter}>
       <div className="primary filter" onClick={() => dispatch(statusFilterSelected(null))}>
         <div className="content">
-          <h4>All Tasks</h4>
-          <h2>{todos.length}</h2>
+          <div className="data">
+            <h4>All Tasks</h4>
+            <h2>{todos.length}</h2>
+          </div>
           <Button onClick={() => {
               createTodo(emptyTodo)
               invalidateTodos()
@@ -139,6 +141,30 @@ const Styles = styled.div`
                 return ''
         }
     }}
+
+
+@media only screen and (max-width: 600px) {
+    .secondary {
+      display: none;
+    }
+
+    .primary {
+      width: calc(100vw - 40px);
+      min-height: 100px;
+
+      .content {
+        width: 100%;
+        padding: 20px;
+
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        
+      }
+    }
+
+      
+  }
 `;
 
 export default Filters;

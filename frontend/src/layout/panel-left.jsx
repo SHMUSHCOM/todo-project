@@ -51,6 +51,10 @@ const Styles = styled.div`
     padding: 0;
     margin: 0;
   }
+
+  @media only screen and (max-width: 600px) {
+      display: none;
+  }
 `;
 
 export default LeftPanel;

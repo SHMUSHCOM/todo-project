@@ -34,17 +34,17 @@ const TodoItem = ({
       }}
     >
       <div className="owner">
-        <Avatar />
-        <span>{owner}</span>
+        <Avatar className='avatar' />
+        <span className="owner-name">{owner}</span>
       </div>
       <span className="title">{title}</span>
       <Tags className="tags" tags={tags}></Tags>
 
       <span className="due"> {formatDate(due)}</span>
-      <Status status={status}></Status>
+      <Status className='status' status={status}></Status>
       <span className="points"> {points} </span>
-      <ProgressBar progress={progress} />
-      <ActionsMenu id={_id} />
+      <ProgressBar className='progress' progress={progress} />
+      <ActionsMenu className='actions' id={_id} />
     </Styles>
   );
 };
@@ -113,7 +113,25 @@ const Styles = styled.div`
     }
   }
 
-  
+ 
+  @media only screen and (max-width: 600px) {
+   
+    width: calc(100vw - 40px);
+
+    .owner-name, .avatar, .tags, .points, .progress, .due  {
+      display: none;
+      flex-basis: min-content;
+      flex-shrink: 1;
+      flex-grow: 0;
+    }
+
+    .owner {
+      flex-basis: min-content;
+      flex-shrink: 1;
+      flex-grow: 0;
+    }
+      
+  }
 
   /* ${({ status }) => {
     return status === "DONE"

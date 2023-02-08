@@ -26,6 +26,10 @@ const Styles = styled.div`
   & > * {
     flex-grow: 1;
   }
+
+  @media only screen and (max-width: 600px) {
+      display: none;
+  }
 `
 
 export default RightPanel

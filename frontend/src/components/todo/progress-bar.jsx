@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
-const ProgressBar = ({ progress }) => {
+const ProgressBar = ({ progress, className }) => {
   const hasProgressed = Number(progress) > 20;
   const outer = useRef(null);
   const [width, setWidth] = useState(0);
@@ -22,9 +22,9 @@ const ProgressBar = ({ progress }) => {
   }, [progress]);
 
   return (
-    <Styles width={width} ref={outer}>
+    <Styles className={className} width={width} ref={outer}>
       {!hasProgressed ? `${progress}%` : ""}
-      <div className={"progress"}>{hasProgressed ? `${progress}%` : ""}</div>
+      <div className={"progress-bar"}>{hasProgressed ? `${progress}%` : ""}</div>
     </Styles>
   );
 };
@@ -46,7 +46,7 @@ const Styles = styled.div`
 
   font-size: 12px;
 
-  .progress {
+  .progress-bar {
     width: ${({ width }) => `${width}px`};
     height: 25px;
     border-radius: 50px;

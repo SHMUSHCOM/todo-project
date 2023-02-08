@@ -22,6 +22,11 @@ const StyledButton = styled.button`
     font-size: 14px;
     cursor: pointer;
 
+
+    &:hover {
+        background-color: ${lighten(0.1, '#7900B0')}
+    }
+
     
     ${({primary}) => {
         return primary 

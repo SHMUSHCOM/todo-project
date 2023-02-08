@@ -46,5 +46,10 @@ const Styles = styled.div`
 
     }
   }
+
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+ }
 `
 export default TodoHeader;
