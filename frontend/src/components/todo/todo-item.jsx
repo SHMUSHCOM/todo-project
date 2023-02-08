@@ -50,6 +50,7 @@ const TodoItem = ({
 };
 
 const Styles = styled.div`
+  cursor: pointer;
   width: 100%;
   height: 70px;
   padding: 15px;
@@ -92,7 +93,7 @@ const Styles = styled.div`
 
   ${({ isSelected }) => {
     return isSelected
-      ? `border: 1px solid var(--purple); box-shadow:  1px 1px 8px 2px #afafaf39; `
+      ? `border: 1px solid var(--purple); box-shadow:  1px 1px 8px 2px #afafaf39; background-color: var(--light-purple); `
       : ``;
   }}
 

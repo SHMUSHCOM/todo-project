@@ -38,7 +38,6 @@ const Styles = styled.div`
     overflow: scroll;
 
     .todo-container {
-        
         display: flex;
         flex-wrap: wrap;
         gap: 10px;

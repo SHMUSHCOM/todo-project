@@ -41,7 +41,7 @@ const Styles = styled.div`
   align-items: center;
   position: relative;
 
-  background-color: white;
+
   color: var(--purple);
 
   font-size: 12px;

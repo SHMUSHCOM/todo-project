@@ -17,6 +17,7 @@ const Styles = styled.div`
     overflow: scroll;
 
 
+
     span {
         padding: 7px 15px;
         border-radius: 50px;
