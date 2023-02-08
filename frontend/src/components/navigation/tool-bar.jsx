@@ -8,14 +8,13 @@ import GlobalSearch from './global-search';
 const ToolBar = () => {
     return (
         <Styles>
-            <GlobalSearch></GlobalSearch>
+            <GlobalSearch className='global-search'></GlobalSearch>
             <Avatar/>     
         </Styles>
     );
 }
 
 const Styles = styled.div`
-
     height: 70px;
     padding: 0 20px;
     margin: 0;
@@ -24,6 +23,14 @@ const Styles = styled.div`
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+
+
+    @media only screen and (max-width: 500px) {
+        .search {
+            display: none;
+        }
+    
+    }
 `
 
 export default ToolBar;

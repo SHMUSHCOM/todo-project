@@ -32,6 +32,12 @@ const Styles = styled.div`
         font-size: 20px;
     }
 
+    @media only screen and (max-width: 600px) {
+        
+        width: calc(100vw);
+            
+    }
+
 `
 
 export default Header;

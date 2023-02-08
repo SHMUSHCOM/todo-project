@@ -40,7 +40,7 @@ const Styles = styled.div`
 
     .todo-container {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 10px;
     }
 `
