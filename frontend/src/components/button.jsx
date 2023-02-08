@@ -4,13 +4,6 @@ import { lighten } from 'polished'
 import { useRef, useState, useEffect } from 'react';
 
 const Button = ({type, primary=true, children, onClick}) => {
-    const button  = useRef(null)
-    const [color, setColor] = useState()
-    useEffect(() => {
-        const color = window.getComputedStyle(button.current).backgroundColor
-        console.log(color)
-        setColor(color)
-    },[])
 
     return (
         <StyledButton  primary={primary} onClick={onClick} type={type}>
