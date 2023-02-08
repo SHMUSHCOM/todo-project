@@ -7,6 +7,7 @@ const router = new Router()
 
 // CREATE TODO (MULTIPLE)
 router.post('/', async (request, response, next) => {
+    console.log(request.body)
     const documents = await Todo.create(...request.body)
     response.status(200).json(documents)
 })

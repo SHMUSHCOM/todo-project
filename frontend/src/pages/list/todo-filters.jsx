@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { todoAdded } from "../../state/slices/todo.slice";
+
+import { createTodo, useInvalidateTodos } from "../../network/requests";
+import { statusFilterSelected } from "../../state/slices/app.slice";
+
 import styled from "styled-components";
 import Button from "../../components/button";
 import Status from "../../components/todo/status-item";
-import { statusFilterSelected } from "../../state/slices/app.slice";
 
 const Filters = () => {
   const todos = useSelector(state => state.todos);
@@ -12,13 +14,17 @@ const Filters = () => {
   const doneTodos = todos.filter(todo => todo.status == "DONE");
   const inprogressTodos = todos.filter(todo => todo.status == "INPROGRESS");
   const notstartedTodos = todos.filter(todo => todo.status == "NOTSTARTED");
+
   const dispatch = useDispatch();
+  const invalidateTodos = useInvalidateTodos()
+  
+  
+  
   const emptyTodo = {
-    _id: Math.random().toString(36).toUpperCase().split(".")[1],
     owner: "",
     title: "",
     details: "",
-    status: "",
+    status: "NOTSTARTED",
     tags: [],
     due: Date.now(),
     progress: 0,
@@ -32,7 +38,10 @@ const Filters = () => {
         <div className="content">
           <h4>All Tasks</h4>
           <h2>{todos.length}</h2>
-          <Button onClick={() => dispatch(todoAdded(emptyTodo))}>
+          <Button onClick={() => {
+              createTodo(emptyTodo)
+              invalidateTodos()
+            }}>
             Create New Task
           </Button>
         </div>

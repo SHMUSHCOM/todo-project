@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import TodoItem from "../../components/todo/todo-item";
 
-import { useDispatch, useSelector } from "react-redux";
-import { todosFetched } from "../../state/slices/todo.slice";
-import { fetchTodos } from '../../network/requests';
+import { useSelector, useDispatch } from "react-redux";
+import { todoSelected } from '../../state/slices/app.slice';
+import { useInvalidateTodos } from '../../network/requests';
 
 const TodoContainer = () => {
-    const dispatch = useDispatch();
+
+    const invalidateTodos = useInvalidateTodos()
     const statusFilter = useSelector( state => state.app.statusFilter)
     const searchFilter = useSelector( state => state.app.searchFilter)
 
@@ -16,24 +17,17 @@ const TodoContainer = () => {
         if (!statusFilter) return (JSON.stringify(todo).toLowerCase().includes(searchFilter.toLowerCase()))
         if (!searchFilter) return (todo.status == statusFilter )
         return ((todo.status == statusFilter ) && (JSON.stringify(todo).toLowerCase().includes(searchFilter.toLowerCase())))
-
     } );
-  
-    useEffect(() => {
+    const sortedTodos = todos.sort( (todoA, todoB) => todoA.createdAt > todoB.createdAt ? -1 : 1 )
+    
+    const dispatch = useDispatch()
+    dispatch(todoSelected(sortedTodos[0]._id))
 
-      async function getInitialTodoData() {
-        const data = await fetchTodos()
-        dispatch(todosFetched(data));
-      }
-
-      getInitialTodoData().catch(console.error)
-
-    }, []);
-
+   
     return (
         <Styles>
             <div className="todo-container">
-                {todos.map((todo) => (<TodoItem key={todo._id} {...todo}></TodoItem>))}
+                {sortedTodos.map((todo) => (<TodoItem key={todo._id} {...todo}></TodoItem>))}
             </div>
         </Styles>
     );
