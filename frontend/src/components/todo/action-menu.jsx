@@ -10,10 +10,10 @@ import { createTodo, useInvalidateTodos } from '../../network/requests';
 
 const ActionsMenu = ({id}) => {
     const dispatch= useDispatch()
-    const todo = useSelector( state => state.todos.find( todo => todo._id == id))
+    const todo = useSelector( state => state.todos.find( todo => todo?._id == id))
     
     let clonedTodo = {...todo}
-    delete clonedTodo._id
+    delete clonedTodo?._id
 
     const invalidate = useInvalidateTodos()
 

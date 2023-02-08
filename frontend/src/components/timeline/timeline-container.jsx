@@ -11,7 +11,7 @@ const TimelineContainer = () => {
     <Styles className="timeline">
       {todos.map(todo => (
         <TodoTimelineItem
-          key={todo._id}
+          key={todo?._id}
           type="active"
           {...todo}
         ></TodoTimelineItem>

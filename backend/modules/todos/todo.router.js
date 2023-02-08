@@ -18,13 +18,13 @@ router.post('/sync', async (request, response, next) => {
     const clientStorage = [...request.body]
     const serverStorage = await Todo.find()
 
-    const clientStorageIds = clientStorage.map(todo => todo._id)
+    const clientStorageIds = clientStorage.map(todo => todo?._id)
     const serverStorageIds = serverStorage.map(todo => todo?._id?.toString())
 
  
     function toServerTodo(clientTodo){
         const serverTodo = {...clientTodo}
-        delete serverTodo._id
+        delete serverTodo?._id
         return serverTodo
     }
 
@@ -37,14 +37,14 @@ router.post('/sync', async (request, response, next) => {
 
      // Files that are on the server and the client should be updated
      for(let clientTodo of clientStorage) {
-        if(serverStorageIds.includes(clientTodo._id)) {
+        if(serverStorageIds.includes(clientTodo?._id)) {
             const updated = await Todo.findByIdAndUpdate(clientTodo?._id ,clientTodo, {new: true})
         }
      }
 
      // Files that on the client, but not on the server should be created. 
      for(let clientTodo of clientStorage) {
-        if(!serverStorageIds.includes(clientTodo._id)) {
+        if(!serverStorageIds.includes(clientTodo?._id)) {
             const created = await Todo.create(toServerTodo(clientTodo), {new: true})
         }
      }

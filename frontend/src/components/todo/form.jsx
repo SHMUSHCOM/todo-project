@@ -14,7 +14,7 @@ import {formatDatePicker} from '../../utils/date';
 const TodoForm = () => {
     const dispatch = useDispatch()
     const todos = useSelector( state => state.todos)
-    const todo = useSelector( state => todos.find(todo => todo._id == state.app.selectedTodo))
+    const todo = useSelector( state => todos.find(todo => todo?._id == state.app.selectedTodo))
     
     // Transform state data into form data
     const serializeTodo = (todo) => ({ 

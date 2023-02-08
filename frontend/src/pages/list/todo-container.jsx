@@ -21,13 +21,13 @@ const TodoContainer = () => {
     const sortedTodos = todos.sort( (todoA, todoB) => todoA.createdAt > todoB.createdAt ? -1 : 1 )
     
     const dispatch = useDispatch()
-    dispatch(todoSelected(sortedTodos[0]._id))
+    dispatch(todoSelected(sortedTodos[0]?._id))
 
    
     return (
         <Styles>
             <div className="todo-container">
-                {sortedTodos.map((todo) => (<TodoItem key={todo._id} {...todo}></TodoItem>))}
+                {sortedTodos.map((todo) => (<TodoItem key={todo?._id} {...todo}></TodoItem>))}
             </div>
         </Styles>
     );
