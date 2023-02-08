@@ -25,7 +25,6 @@ const Styles = styled.div`
     overflow: hidden;
   }
 
-  min-width: 1000px;
   width: 100%;
   height: calc(100vh - var(--header-height));
   padding: 20px;
