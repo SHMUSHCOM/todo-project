@@ -6,7 +6,7 @@ import cors from 'cors'
 
 import todoRouter from './modules/todos/todo.router.js'
 
-const {PORT, HOST, DB_URI} = process.env
+const {PORT, DB_URI} = process.env
 const server = express()
 
 // Middleware
@@ -31,5 +31,5 @@ server.use((request, response)=> {
 // Connections
 await connect(DB_URI)
 console.log(`📀 Connected on ${DB_URI}`)
-await server.listen(PORT, HOST) 
-console.log(`🌍 Listening on http://${HOST}:${PORT}`)
+await server.listen(PORT) 
+console.log(`🌍 Listening on http://https://shmush.onrender.com:${PORT}`)
