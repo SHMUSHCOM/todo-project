@@ -28,9 +28,10 @@ const Styles = styled.div`
   }
 
   @media only screen and (max-width: 600px) {
+      padding-top: 25px;
       position: absolute;
       bottom:0; left: 0; right: 0;
-      height: 400px;
+      height: 30vh;
       border-top: 1px solid var(--very-light-grey);
       box-shadow: 0 2px 5px 5px #8383832f;
 

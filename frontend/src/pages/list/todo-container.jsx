@@ -15,6 +15,8 @@ const TodoContainer = () => {
     const statusFilter = useSelector( state => state.app.statusFilter)
     const searchFilter = useSelector( state => state.app.searchFilter)
     const selectedTodo = useSelector( state => state.app.selectedTodo)
+    const sortColumn = useSelector( state => state.app.sortColumn)
+    const sortOrder = useSelector( state => state.app.sortOrder)
 
     // Return filtered todos
     const todos = useSelector(state => state.todos).filter( todo => {
@@ -25,7 +27,7 @@ const TodoContainer = () => {
     } );
 
     // Return sorted todos
-    const sortedTodos = todos.sort( (todoA, todoB) => todoA.createdAt > todoB.createdAt ? -1 : 1 )
+    const sortedTodos = todos.sort( (todoA, todoB) => todoA[sortColumn || 'createdAt'] > todoB[sortColumn || 'createdAt'] ? -sortOrder : sortOrder)
     
     // Select first todo (if none selected)
     const dispatch = useDispatch()
