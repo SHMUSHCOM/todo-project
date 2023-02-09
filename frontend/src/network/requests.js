@@ -8,7 +8,7 @@ const todoEndpoint = `${VITE_SERVER_URL}/todos`
 const syncEndpoint = `${VITE_SERVER_URL}/todos/sync`
 
 // Custom Hook to fetch todos from server and refresh redux state
-export const useInvalidateTodos = () => {
+export const useInvalidateTodos =  () => {
         const [stale, setStale] = useState(false)
 
         const dispatch = useDispatch();

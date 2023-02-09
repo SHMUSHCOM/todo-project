@@ -40,8 +40,8 @@ const Filters = () => {
             <h4>All Tasks</h4>
             <h2>{todos.length}</h2>
           </div>
-          <Button onClick={() => {
-              createTodo(emptyTodo)
+          <Button onClick={async () => {
+              await createTodo(emptyTodo)
               invalidateTodos()
             }}>
             Create New Task

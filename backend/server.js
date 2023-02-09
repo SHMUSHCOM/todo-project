@@ -6,7 +6,8 @@ import cors from 'cors'
 
 import todoRouter from './modules/todos/todo.router.js'
 
-const {PORT, DB_URI} = process.env
+const { PORT, DB_URI } = process.env
+
 const server = express()
 
 // Middleware
