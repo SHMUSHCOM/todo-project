@@ -21,10 +21,14 @@ const Styles = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: white;
+    background-color: #f9f9f9;
     color: black;
 
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+      gap: 20px;
 
+  }
 
 `
 
