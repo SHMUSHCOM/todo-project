@@ -62,7 +62,7 @@ const Styles = styled.div`
   align-items: center;
   gap: 30px;
 
-  font-weight: 100;
+  font-weight: 300;
   background-color: white;
 
   & > *:not(.actions-menu, .points) {

@@ -93,6 +93,7 @@ const Styles = styled.div`
         flex-direction: column;
         justify-content: space-between;
         gap: 20px;
+        font-weight: 500;
     }
 
     .fields {
@@ -111,6 +112,7 @@ const Styles = styled.div`
             border: 2px solid var(--very-light-grey);
             border-radius: 5px;
             font-size: 18px;
+            font-weight: 300;
 
             &::placeholder, &::-webkit-input-placeholder {
                 color:var(--very-light-grey);

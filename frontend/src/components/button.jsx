@@ -18,20 +18,29 @@ const StyledButton = styled.button`
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    font-weight: 900;
+    font-weight: 500;
     font-size: 14px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 
 
     &:hover {
-        background-color: ${lighten(0.1, '#7900B0')}
+        background-color: ${lighten(0.1, '#7900B0')};
+        ${({primary}) => {
+        return primary 
+            ? `background-color: ${lighten(0.1, '#7900B0')}`
+            : `background-color: ${lighten(0.6, '#7900B0')}`
+    }  };
     }
 
     
     ${({primary}) => {
         return primary 
             ? `background-color: var(--purple); color: white;`
-            : `background-color: white; color: var(--purple); border: 1px solid var(--purple); font-weight: 100;`
+            : `background-color: white; color: var(--purple); border: 1px solid var(--purple); font-weight: 300;`
     }  };
 `
 export default Button;

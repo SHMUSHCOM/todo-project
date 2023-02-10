@@ -80,7 +80,7 @@ const Styles = styled.div`
     align-items: center;
 
     h2 {
-      font-weight: 900;
+      font-weight: 700;
       font-size: 30px;
     }
 

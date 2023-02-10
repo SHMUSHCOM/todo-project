@@ -8,21 +8,17 @@ const TodoHeader = () => {
     const header = useRef(null)
     const dispatch = useDispatch()
     const sortColumn = useSelector( state => state.app.sortColumn)
-    useEffect(()=>{
-        const sortHandler = (event) => {
-                if(event.target.tagName == 'SPAN' ) {
-                    dispatch(sortColumnUpdated(event.target.textContent.toLowerCase().trim()))
-                    dispatch(sortOrderUpdated())
-                }  
-            }
-        header?.current.addEventListener('click', sortHandler)
-        return () => {
-            header?.current.removeEventListener('click', sortHandler)
-        }
-    } ,[])
+
+    const sortHandler = (event) => {
+        if(event.target.tagName == 'SPAN' ) {
+            dispatch(sortColumnUpdated(event.target.textContent.toLowerCase().trim()))
+            dispatch(sortOrderUpdated())
+        }  
+    }
+
     return (
         <Styles>
-            <div className="todo-header" ref={header}>
+            <div className="todo-header" ref={header} onClick={sortHandler}>
                 <span tabIndex={0} className={sortColumn == 'owner' ? 'selected' : ''}>Owner</span>
                 <span tabIndex={0} className={sortColumn == 'title' ? 'selected' : ''}>Title</span>
                 <span tabIndex={0} className={sortColumn == 'tags' ? 'selected' : ''}>Tags</span>

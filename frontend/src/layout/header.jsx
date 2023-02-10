@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
 import ToolBar from '../components/navigation/tool-bar';
+import Logo from '../components/logo'
 
 const Header = () => {
     return (
         <Styles className='header'>
-            <img src="/Logo.png" alt="" />
-            <ToolBar></ToolBar>
+            <Logo/>
+            <ToolBar/>
         </Styles>
     );
 }

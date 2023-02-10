@@ -40,7 +40,9 @@ const Page404 = () => {
 
 
 const Styles = styled.div`
-height: 100%;
+width: 100vw;
+height: 100vh;
+
     
 
 @import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500');
