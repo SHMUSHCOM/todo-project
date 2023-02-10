@@ -13,7 +13,7 @@ const Main = ({children}) => {
 const Styles = styled.div`
     
     width: calc(100vw);
-    height: calc(100vh - 70px);
+    height: calc(100% - 70px);
     padding: 0;
     margin: 0;
     position: fixed;
@@ -24,10 +24,10 @@ const Styles = styled.div`
     background-color: #f9f9f9;
     color: black;
 
+
     @media only screen and (max-width: 600px) {
       flex-direction: column;
       gap: 20px;
-
   }
 
 `

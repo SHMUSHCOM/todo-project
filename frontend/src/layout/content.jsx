@@ -15,11 +15,13 @@ const Styles = styled.div`
     
     flex-grow: 1;
     height: 100%;
-    overflow: scroll;
+    overflow: hidden;
     /* padding: 20px; */
     background-color: #f9f9f9;
 
-
+    @media only screen and (max-width: 500px) {
+        height: 70%;
+    }
 
 
 `

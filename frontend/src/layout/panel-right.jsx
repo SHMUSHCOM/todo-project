@@ -28,13 +28,11 @@ const Styles = styled.div`
   }
 
   @media only screen and (max-width: 600px) {
-      padding-top: 25px;
+      
       width: 100vw;
-      height: 30vh;
-      /* position: absolute;
-      bottom:0; left: 0; right: 0; */
+      height: 40%;
+      padding: 20px;
       border-top: 1px solid var(--very-light-grey);
-      /* box-shadow: 0 2px 5px 5px #8383832f; */
 
   }
 `

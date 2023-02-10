@@ -32,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
     display: flex;
     place-items: center;
     min-width: 320px;
-    min-height: 100vh;
+    min-height: 100%;
   }
 
   h1, h2,h3,h4,h5,h6 {
