@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { createTodo, useInvalidateTodos } from "../../../network/requests";
-import { statusFilterSelected } from "../../../state/slices/app.slice";
+import { statusFilterSelected, todoSelected, newTodoAdded } from "../../../state/slices/app.slice";
 
 import styled from "styled-components";
 import Button from "../../../components/button";
@@ -41,8 +41,9 @@ const Filters = () => {
             <h2>{todos.length}</h2>
           </div>
           <Button onClick={async () => {
-              await createTodo(emptyTodo)
+              const todo = await createTodo(emptyTodo)
               invalidateTodos()
+              dispatch(newTodoAdded(todo._id))
             }}>
             Create New Task
           </Button>
@@ -144,6 +145,7 @@ const Styles = styled.div`
 
 
 @media only screen and (max-width: 600px) {
+
     .secondary {
       display: none;
     }
@@ -151,6 +153,7 @@ const Styles = styled.div`
     .primary {
       width: calc(100vw - 40px);
       min-height: 100px;
+      
 
       .content {
         width: 100%;

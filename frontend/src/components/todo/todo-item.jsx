@@ -1,15 +1,15 @@
-import React from "react";
-import Avatar from "./avatar";
-import ProgressBar from "./progress-bar";
-import Tags from "./tag";
-import Status from "./status-item";
-import ActionsMenu from "./action-menu";
-
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import formatDate from "../../utils/date";
 
 import { useDispatch, useSelector } from "react-redux";
 import { todoSelected } from "../../state/slices/app.slice";
+
+import Avatar from "./avatar";
+import ProgressBar from "./progress-bar";
+import Tags from "./tag";
+import Status from "./status-item";
+import ActionsMenu from "./action-menu";
 
 const TodoItem = ({
   _id,
@@ -24,9 +24,14 @@ const TodoItem = ({
   const dispatch = useDispatch();
   const isSelected = useSelector(state => state.app.selectedTodo == _id);
 
-  
+  const todoItem = useRef(null);
+  useEffect(() => {
+    if (isSelected) todoItem.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [isSelected]);
+
   return (
     <Styles
+      ref={todoItem}
       status={status}
       isSelected={isSelected}
       onClick={() => {
@@ -34,17 +39,17 @@ const TodoItem = ({
       }}
     >
       <div className="owner">
-        <Avatar className='avatar' />
+        <Avatar className="avatar" />
         <span className="owner-name">{owner}</span>
       </div>
       <span className="title">{title}</span>
       <Tags className="tags" tags={tags}></Tags>
 
       <span className="due"> {formatDate(due)}</span>
-      <Status className='status' status={status}></Status>
+      <Status className="status" status={status}></Status>
       <span className="points"> {points} </span>
-      <ProgressBar className='progress' progress={progress} />
-      <ActionsMenu className='actions' id={_id} />
+      <ProgressBar className="progress" progress={progress} />
+      <ActionsMenu className="actions" id={_id} />
     </Styles>
   );
 };
@@ -113,12 +118,15 @@ const Styles = styled.div`
     }
   }
 
- 
   @media only screen and (max-width: 600px) {
-   
     width: calc(100vw - 40px);
 
-    .owner-name, .avatar, .tags, .points, .progress, .due  {
+    .owner-name,
+    .avatar,
+    .tags,
+    .points,
+    .progress,
+    .due {
       display: none;
       flex-basis: min-content;
       flex-shrink: 1;
@@ -130,7 +138,6 @@ const Styles = styled.div`
       flex-shrink: 1;
       flex-grow: 0;
     }
-      
   }
 
   /* ${({ status }) => {
@@ -141,8 +148,6 @@ const Styles = styled.div`
          filter: blur(0.05em);`
       : ``;
   }} */
-
-
 `;
 
 export default TodoItem;

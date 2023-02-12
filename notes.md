@@ -40,6 +40,11 @@ React Hook Forms
 
 
 
+Project Questions 12th Feb 2023
+
+- Back end errors? Throw exceptions? Respond with 400 server response? 
+- How to handle 400/500 responses on the client? Throw errors? Render an Error UI? 
+
 
 
 **Course**

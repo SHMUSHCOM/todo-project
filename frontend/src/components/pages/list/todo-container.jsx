@@ -60,5 +60,10 @@ const Styles = styled.div`
         flex-direction: column;
         gap: 10px;
     }
+
+    @media only screen and (max-width: 600px) {
+      
+  }
+
 `
 export default TodoContainer;

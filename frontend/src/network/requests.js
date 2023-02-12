@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { todosFetched } from "../state/slices/todo.slice";
+import { todoSelected, newTodoAdded } from "../state/slices/app.slice";
 
 
 
@@ -9,18 +10,19 @@ const todoEndpoint = `${VITE_SERVER_URL}/todos`
 const syncEndpoint = `${VITE_SERVER_URL}/todos/sync`
 
 
-
 // Custom Hook to fetch todos from server and refresh redux state
-export const useInvalidateTodos =  () => {
+export const useInvalidateTodos = () => {
         const [stale, setStale] = useState(false)
-
+        const newTodo = useSelector( state => state.app.newTodo)
         const dispatch = useDispatch();
+
         useEffect( () => {
 
             const refresh = async () => {
                 const response = await fetch(todoEndpoint);
                 const data = await response.json();
                 dispatch(todosFetched(data));
+                dispatch(todoSelected(newTodo))
             }
 
             refresh().catch(console.error)
