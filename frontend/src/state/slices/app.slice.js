@@ -8,6 +8,7 @@ const appSlice = createSlice({
         searchFilter: null,
         sortColumn: 'createdAt',
         sortOrder: 1,
+        accessToken: null,
     }, 
     reducers: {
         todoSelected: (state, action) => {state.selectedTodo = action.payload},
@@ -15,8 +16,9 @@ const appSlice = createSlice({
         searchFilterUpdated: (state, action) => {state.searchFilter = action.payload},
         sortColumnUpdated: (state, action) => {state.sortColumn = action.payload},
         sortOrderUpdated: (state) => {state.sortOrder = -1 * state.sortOrder},
+        accessTokenUpdated: (state, action) => {state.accessToken = action.payload},
     }
 })
 
 export default appSlice.reducer
-export const {todoSelected, statusFilterSelected, searchFilterUpdated, sortColumnUpdated, sortOrderUpdated} = appSlice.actions
+export const {todoSelected, statusFilterSelected, searchFilterUpdated, sortColumnUpdated, sortOrderUpdated, accessTokenUpdated} = appSlice.actions

@@ -18,7 +18,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    height: 100%;
+    height: 100vh;
+    height: -webkit-fill-available;
+    height: fill-available;
     margin:0;
     padding: 0;
   }
@@ -27,10 +29,12 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding:0;
     height: 100%;
+    height: -webkit-fill-available;
+    /* height: fill-available; */
     display: flex;
     place-items: center;
     min-width: 320px;
-    min-height: 100%;
+    /* min-height: 100%; */
   }
 
   h1, h2,h3,h4,h5,h6 {

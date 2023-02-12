@@ -1,11 +1,28 @@
 import React from 'react';
 import styled from 'styled-components'
 import {useForm} from 'react-hook-form'
-import Logo from '../components/logo';
-import { Link } from 'react-router-dom';
-import Button from '../components/button'
+import Logo from '../logo';
+import { Link, useNavigate } from 'react-router-dom';
+import Button from '../button'
+import { registerUser } from '../../network/requests';
+import { useDispatch } from 'react-redux';
+import { accessTokenUpdated } from '../../state/slices/app.slice';
 
 const SignUp = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const {register, handleSubmit, formState: {errors}, setError} = useForm()
+    const submit = async (formData)=> {
+        try {
+            const accessToken = await registerUser(formData)
+            dispatch(accessTokenUpdated(accessToken))
+            navigate('/list')
+        } catch (error) {
+            console.log({error})
+            setError('root.serverError', {error})
+        }
+        
+    }
     return (
         <Styles>
             <div className="left">
@@ -13,34 +30,37 @@ const SignUp = () => {
                 <Logo/>
                 <div className="form">
                     <hgroup>
-                        <h1>Sign-in</h1>
-                        <h4>Sign in to start driving with SHMÜSH</h4>
+                        <h1>Ready?</h1>
+                        <h4>Register to start driving with SHMÜSH</h4>
                     </hgroup>
 
-                    <form>
+                    <form onSubmit={handleSubmit(submit)}>
                         
                         <div className="inputs">
-                            <input type="email" placeholder='Enter your email' />
-                            <input type="password" placeholder='Enter your password' />
-                            <div className='remember'>
-                                <div>
-                                    <input type="checkbox" id='forgot' />
-                                    <label htmlFor="forgot">Remember me</label>
-                                </div>
-                                <Link>Forgotten details</Link>
+                            <div className="email">
+                                <input type="text" placeholder='Enter your email' {... register('email', {pattern: {value:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, message:"Email not valid"}})}/>
+                                <span className="error">{errors?.email?.message}</span>
                             </div>
+                            <div className="password">
+                                <input type="password" placeholder='Enter your password' {... register('password', {minLength: {value:8, message:'8 Characters Required'}})} />
+                                <span className="error">{errors?.password?.message}</span>
+                            </div>
+                         
                         </div>
 
                         <div className="buttons">
-                            <Button>Sign in with Email</Button>
+                            <Button type='submit'>Register with Email</Button>
                             <Button primary={false}>
                                 <img src="/google.png" alt="Google Logo" />
-                                Sign in with Google
+                                Register with Google
                             </Button>
                         </div>
+
+                        {JSON.stringify(errors?.root?.serverError?.erro
+                            )}
                     </form>
                 </div>
-                <h4>No account? <Link to={'/list'}>Sign up</Link></h4>
+                <h4>Already have an account? <Link to={'/auth/login'}>Login</Link></h4>
             </div>
                 </div>
             <div className="right">
@@ -66,6 +86,12 @@ const Styles = styled.div`
     display: flex;
     justify-content: stretch;
 
+    .error {
+        color: red;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
     .left {
         flex-basis: 100%;
         display: flex;
@@ -74,13 +100,14 @@ const Styles = styled.div`
 
 
         .sign-in {
-
-            max-width: 400px;
+            min-width: 350px;
+            max-width: 600px;
             height: 60%;
 
             display: flex; 
             flex-direction: column;
             justify-content: space-between;
+            
 
             h1 {
                 font-weight: 500;
@@ -116,7 +143,17 @@ const Styles = styled.div`
                     .inputs {
                         display: flex; 
                         flex-direction: column;
-                        gap: 10px;
+
+                        .email, .password {
+                            display: flex; 
+                            flex-direction: column;
+                            gap: 3px;
+
+                            span {
+                                display: block;
+                                height: 15px;
+                            }
+                        }
 
                         .remember {
                             display: flex;
@@ -160,8 +197,21 @@ const Styles = styled.div`
 
 
             ul {
-                list-style: none;
+                list-style-type: none;
                 padding: 20px;
+
+
+                li {
+                    padding-left: 2rem;
+                    background-image: url('/favicon.png');
+                    background-position: 0 0;
+                    background-size: 1.3rem 1.3rem;
+                    background-repeat: no-repeat;
+                }
+
+
+
+                
 
                 border: 1px solid var(--light-grey);
                 border-radius: 5px;
@@ -169,6 +219,8 @@ const Styles = styled.div`
                 
                 display: flex;
                 flex-direction:column;
+                /* align-items: center; */
+                justify-content: center;
                 gap: 5px;
 
                 transform: rotate(-5deg);
@@ -184,6 +236,14 @@ const Styles = styled.div`
     }
 
     @media only screen and (max-width: 600px) {
+        height: -webkit-fill-available;
+        height: fill-available;
+    
+    .left {
+        height: 100%;
+        height: -webkit-fill-available;
+        height: fill-available;
+    }
 
     .right {
         display: none;

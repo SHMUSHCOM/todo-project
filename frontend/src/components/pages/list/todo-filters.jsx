@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { createTodo, useInvalidateTodos } from "../../network/requests";
-import { statusFilterSelected } from "../../state/slices/app.slice";
+import { createTodo, useInvalidateTodos } from "../../../network/requests";
+import { statusFilterSelected } from "../../../state/slices/app.slice";
 
 import styled from "styled-components";
-import Button from "../../components/button";
-import Status from "../../components/todo/status-item";
+import Button from "../../../components/button";
+import Status from "../../../components/todo/status-item";
 
 const Filters = () => {
   const todos = useSelector(state => state.todos);

@@ -3,9 +3,12 @@ import { useDispatch } from "react-redux";
 import { todosFetched } from "../state/slices/todo.slice";
 
 
+
 const { VITE_SERVER_URL } = import.meta.env
 const todoEndpoint = `${VITE_SERVER_URL}/todos`
 const syncEndpoint = `${VITE_SERVER_URL}/todos/sync`
+
+
 
 // Custom Hook to fetch todos from server and refresh redux state
 export const useInvalidateTodos =  () => {
@@ -54,3 +57,43 @@ export const createTodo = async (todo) => {
     return data
 }
 
+const registerEndpoint = `${VITE_SERVER_URL}/auth/register`
+export const registerUser = async ({email, password}) => {
+    const method = 'POST'
+    const headers = {'content-type': 'application/json'}
+    const body = JSON.stringify({email, password})
+
+    const response = await fetch(registerEndpoint, {method, headers, body})
+    const {accessToken} = await response.json()
+
+    if (!response.ok) throw new Error(accessToken)
+    return accessToken
+}
+
+const loginEndpoint = `${VITE_SERVER_URL}/auth/login`
+export const loginUser = async ({email, password}) => {
+    const method = 'POST'
+    const headers = {'content-type': 'application/json'}
+    const body = JSON.stringify({email, password})
+
+    const response = await fetch(loginEndpoint, {method, headers, body})
+    const {accessToken} = await response.json()
+
+    return accessToken
+}
+
+
+const userEndpoint = `${VITE_SERVER_URL}/users/1234`
+export const getProtectedUserData = async (accessToken) => {
+    
+    const method = 'GET'
+    const headers = [
+        ['content-type','application/json'],
+        ['access-token', accessToken],
+    ]
+
+    const response = await fetch(userEndpoint, {method, headers})
+    const {user} = await response.json()
+
+    return user
+}

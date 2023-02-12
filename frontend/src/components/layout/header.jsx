@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import ToolBar from '../components/navigation/tool-bar';
-import Logo from '../components/logo'
+import ToolBar from '../../components/navigation/tool-bar';
+import Logo from '../../components/logo'
 
 const Header = () => {
     return (

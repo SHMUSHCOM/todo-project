@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import TodoItem from "../../components/todo/todo-item";
+import TodoItem from "../../../components/todo/todo-item";
 
 import { useSelector, useDispatch } from "react-redux";
-import { todoSelected } from '../../state/slices/app.slice';
-import { useInvalidateTodos } from '../../network/requests';
+import { todoSelected } from '../../../state/slices/app.slice';
+import { useInvalidateTodos, getProtectedUserData } from '../../../network/requests';
 
 const TodoContainer = () => {
+    const accessToken = useSelector(state => state.app.accessToken)
+    useEffect(()=>{
+        (async function(){
+            const user = await getProtectedUserData(accessToken)
+            console.log(user)
+        })()
+    },[])
 
     // Refresh the cache on component render
     useInvalidateTodos()

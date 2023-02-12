@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sortColumnUpdated, sortOrderUpdated } from '../../state/slices/app.slice'
+import { sortColumnUpdated, sortOrderUpdated } from '../../../state/slices/app.slice'
 
 import styled from 'styled-components';
 
