@@ -34,9 +34,7 @@ const TodoItem = ({
       ref={todoItem}
       status={status}
       isSelected={isSelected}
-      onClick={() => {
-        dispatch(todoSelected(_id));
-      }}
+      onClick={() => {dispatch(todoSelected(_id));}}
     >
       <div className="owner">
         <Avatar className="avatar" />

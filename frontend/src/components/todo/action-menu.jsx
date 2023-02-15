@@ -14,16 +14,17 @@ const ActionsMenu = ({id}) => {
     
     let clonedTodo = {...todo}
     delete clonedTodo?._id
+    const {invalidateTodos} = useInvalidateTodos()
 
-    const invalidate = useInvalidateTodos()
+    
 
     return (
         <Styles className='actions-menu'>
             <IconContext.Provider value={{ className: 'action-icons', style: { verticalAlign: 'middle', color: 'var(--purple)' } }}>
                 <FiTrash2 onClick={() => dispatch(todoDeleted(id))}/>
-                <FiCopy onClick={ () => {
-                    createTodo(clonedTodo) 
-                    invalidate()
+                <FiCopy onClick={ async () => {
+                    await createTodo(clonedTodo)
+                    invalidateTodos()
                 }}>
                 </FiCopy>
             </IconContext.Provider>

@@ -1,42 +1,26 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { todosFetched } from "../state/slices/todo.slice";
-import { todoSelected, newTodoAdded } from "../state/slices/app.slice";
-
-
 
 const { VITE_SERVER_URL } = import.meta.env
 const todoEndpoint = `${VITE_SERVER_URL}/todos`
 const syncEndpoint = `${VITE_SERVER_URL}/todos/sync`
 
-
-// Custom Hook to fetch todos from server and refresh redux state
+// CUSTOM HOOK | INVALIDATE TODOS
 export const useInvalidateTodos = () => {
-        const [stale, setStale] = useState(false)
-        const newTodo = useSelector( state => state.app.newTodo)
-        const dispatch = useDispatch();
-
-        useEffect( () => {
-
-            const refresh = async () => {
-                const response = await fetch(todoEndpoint);
-                const data = await response.json();
-                dispatch(todosFetched(data));
-                dispatch(todoSelected(newTodo))
-            }
-
-            refresh().catch(console.error)
-
-        } ,[stale])
-
-        function toggleStale()  {
-            setStale(!stale)
-        }
-
-        return toggleStale
-
+    const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch();
+    const invalidateTodos = async ()=>{
+        setIsLoading(true)
+        const response = await fetch(todoEndpoint);
+        const data = await response.json();
+        dispatch(todosFetched(data));
+        setIsLoading(false)
+    }
+    return {invalidateTodos, isLoading}
 }
 
+// SYNC TODOS FROM CLIENT TO SERVER
 export const syncTodos = async (todos) => {
     const method = 'POST'
     const headers = {'content-type': 'application/json'}
@@ -48,6 +32,7 @@ export const syncTodos = async (todos) => {
     return data
 }
 
+// CREATE NEW TODO ON SERVER
 export const createTodo = async (todo) => {
     const method = 'POST'
     const headers = {'content-type': 'application/json'}
@@ -59,6 +44,7 @@ export const createTodo = async (todo) => {
     return data
 }
 
+// AUTH | REGISTER USER
 const registerEndpoint = `${VITE_SERVER_URL}/auth/register`
 export const registerUser = async ({email, password}) => {
     const method = 'POST'
@@ -66,12 +52,13 @@ export const registerUser = async ({email, password}) => {
     const body = JSON.stringify({email, password})
 
     const response = await fetch(registerEndpoint, {method, headers, body})
-    const {accessToken} = await response.json()
+    const data = await response.json()
 
-    if (!response.ok) throw new Error(accessToken)
-    return accessToken
+    console.log(data)
+    return ({data, success: response.ok})
 }
 
+// AUTH | LOGIN
 const loginEndpoint = `${VITE_SERVER_URL}/auth/login`
 export const loginUser = async ({email, password}) => {
     const method = 'POST'

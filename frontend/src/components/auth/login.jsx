@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components'
-import {useForm} from 'react-hook-form'
-import Logo from '../logo';
 import { Link, useNavigate } from 'react-router-dom';
-import Button from '../button'
 import { registerUser } from '../../network/requests';
-import { useDispatch } from 'react-redux';
+
 import { accessTokenUpdated } from '../../state/slices/app.slice';
+import { useDispatch } from 'react-redux';
+import {useForm} from 'react-hook-form'
+
+import Logo from '../logo';
+import Button from '../button'
 
 const Login = () => {
+    
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {register, handleSubmit, formState: {errors}} = useForm()
@@ -17,6 +20,7 @@ const Login = () => {
         dispatch(accessTokenUpdated(accessToken))
         navigate('/list')
     }
+
     return (
         <Styles>
             <div className="left">

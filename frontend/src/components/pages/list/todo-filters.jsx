@@ -2,23 +2,21 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { createTodo, useInvalidateTodos } from "../../../network/requests";
-import { statusFilterSelected, todoSelected, newTodoAdded } from "../../../state/slices/app.slice";
+import { statusFilterSelected, todoSelected } from "../../../state/slices/app.slice";
 
 import styled from "styled-components";
-import Button from "../../../components/button";
-import Status from "../../../components/todo/status-item";
+import Button from "../../button";
+import Status from "../../todo/status-item";
 
 const Filters = () => {
   const todos = useSelector(state => state.todos);
   const filter = useSelector(state => state.app.statusFilter)
-  const doneTodos = todos.filter(todo => todo.status == "DONE");
-  const inprogressTodos = todos.filter(todo => todo.status == "INPROGRESS");
-  const notstartedTodos = todos.filter(todo => todo.status == "NOTSTARTED");
+  const doneTodos = todos?.filter(todo => todo.status == "DONE");
+  const inprogressTodos = todos?.filter(todo => todo.status == "INPROGRESS");
+  const notstartedTodos = todos?.filter(todo => todo.status == "NOTSTARTED");
 
   const dispatch = useDispatch();
-  const invalidateTodos = useInvalidateTodos()
-  
-  
+  const {invalidateTodos} = useInvalidateTodos()
   
   const emptyTodo = {
     owner: "",
@@ -30,23 +28,27 @@ const Filters = () => {
     progress: 0,
     points: 0,
   };
+
+  const handleNewTodoClick = async () => {
+    const todo = await createTodo(emptyTodo)
+    await invalidateTodos()
+    dispatch(todoSelected(todo._id))
+  }
+
+  const handleFilterClick = (event) => {
+    if (event.target.tagName != 'BUTTON') dispatch(statusFilterSelected(null))
+  }
   
   return (
     
     <Styles filter={filter}>
-      <div className="primary filter" onClick={() => dispatch(statusFilterSelected(null))}>
+      <div className="primary filter" onClick={handleFilterClick}>
         <div className="content">
           <div className="data">
             <h4>All Tasks</h4>
             <h2>{todos.length}</h2>
           </div>
-          <Button onClick={async () => {
-              const todo = await createTodo(emptyTodo)
-              invalidateTodos()
-              dispatch(newTodoAdded(todo._id))
-            }}>
-            Create New Task
-          </Button>
+          <Button onClick={handleNewTodoClick}>Create New Task</Button>
         </div>
       </div>
       <div className="secondary filter" >

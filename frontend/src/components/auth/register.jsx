@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components'
-import {useForm} from 'react-hook-form'
+import {useForm, useWatch} from 'react-hook-form'
 import Logo from '../logo';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../button'
@@ -9,20 +9,28 @@ import { useDispatch } from 'react-redux';
 import { accessTokenUpdated } from '../../state/slices/app.slice';
 
 const SignUp = () => {
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {register, handleSubmit, formState: {errors}, setError} = useForm()
+    const {register, handleSubmit, formState: {errors}, setError, clearErrors} = useForm()
     const submit = async (formData)=> {
         try {
-            const accessToken = await registerUser(formData)
-            dispatch(accessTokenUpdated(accessToken))
-            navigate('/list')
+            const {data, success} = await registerUser(formData)
+            if (success) {
+                dispatch(accessTokenUpdated(data?.accessToken))
+                navigate('/list')
+            } else {
+                console.log({data, success})
+                setError('root.registrationError', {type:400, message: "User already exists"})
+            }
         } catch (error) {
             console.log({error})
-            setError('root.serverError', {error})
+            setError('root.serverError', {type:500, message: "Server error"})
         }
-        
     }
+
+
+
     return (
         <Styles>
             <div className="left">
@@ -34,11 +42,11 @@ const SignUp = () => {
                         <h4>Register to start driving with SHMÜSH</h4>
                     </hgroup>
 
-                    <form onSubmit={handleSubmit(submit)}>
+                    <form onSubmit={handleSubmit(submit)} onInput={event => clearErrors()}>
                         
                         <div className="inputs">
                             <div className="email">
-                                <input type="text" placeholder='Enter your email' {... register('email', {pattern: {value:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, message:"Email not valid"}})}/>
+                                <input type="text"  placeholder='Enter your email' onChange={clearErrors} {... register('email', {pattern: {value:/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, message:"Email not valid"}})}/>
                                 <span className="error">{errors?.email?.message}</span>
                             </div>
                             <div className="password">
@@ -47,17 +55,21 @@ const SignUp = () => {
                             </div>
                          
                         </div>
-
+                        
                         <div className="buttons">
                             <Button type='submit'>Register with Email</Button>
+
                             <Button primary={false}>
                                 <img src="/google.png" alt="Google Logo" />
                                 Register with Google
                             </Button>
+                            <div className="form-errors">
+                                {errors?.root?.serverError && <span className="error">{errors?.root?.serverError?.message}</span>}
+                                {errors?.root?.registrationError && <span className="error">{errors?.root?.registrationError?.message}</span>} 
+                            </div>
                         </div>
 
-                        {JSON.stringify(errors?.root?.serverError?.erro
-                            )}
+                        
                     </form>
                 </div>
                 <h4>Already have an account? <Link to={'/auth/login'}>Login</Link></h4>
@@ -90,6 +102,14 @@ const Styles = styled.div`
         color: red;
         font-size: 12px;
         white-space: nowrap;
+        min-height: 20px;
+        text-align: end;
+    }
+
+    .form-errors {
+        min-height: 40px;
+        display: flex;
+        flex-direction: column;
     }
 
     .left {
@@ -147,7 +167,7 @@ const Styles = styled.div`
                         .email, .password {
                             display: flex; 
                             flex-direction: column;
-                            gap: 3px;
+                            gap: 5px;
 
                             span {
                                 display: block;
