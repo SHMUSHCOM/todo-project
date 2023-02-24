@@ -1,3 +1,7 @@
+Fix Todo Sync
+- Database is source of truth. 
+  - update DB and invalidate cache. 
+
 - Fix create / update of Todo objects. 
   - Ability to select users from a dropdown
   - And pass userid as the value for the Owner of the id

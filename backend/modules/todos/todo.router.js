@@ -109,6 +109,7 @@ router.patch('/:id', async (request, response) => {
 router.delete('/:id', async(request, response)=> {
     const {id} = request.params
     const document = await Todo.findByIdAndRemove(id)
+    
     document 
         ? response.status(200).json({response:"Entity deleted",...document.toObject()})
         : response.status(200).send("Entity not found")

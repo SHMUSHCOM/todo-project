@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom"
 
 const { VITE_SERVER_URL } = import.meta.env
 const todoEndpoint = `${VITE_SERVER_URL}/todos`
-const syncEndpoint = `${VITE_SERVER_URL}/todos/sync`
 
 // FETCH TODOS
 const fetchTodos = async accessToken => {
@@ -27,7 +26,7 @@ export const useInvalidateTodos = () => {
   const accessToken = useSelector(state => state.app.accessToken)
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
-
+  
   const invalidateTodos = async () => {
     setIsLoading(true)
     const {data, success} = await fetchTodos(accessToken)
@@ -35,11 +34,12 @@ export const useInvalidateTodos = () => {
     setIsLoading(false)
     if (!success) navigate('/auth/login')
   }
-
+  
   return { invalidateTodos, isLoading }
 }
 
 // SYNC TODOS FROM CLIENT TO SERVER
+const syncEndpoint = `${VITE_SERVER_URL}/todos/sync`
 export const useSyncTodos = (todos, accessToken)=>{
   return async () => {
 

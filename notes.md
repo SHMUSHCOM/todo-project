@@ -55,6 +55,7 @@ Data modelling:
 Changing the data model
 - Changing property names? 
 - Moving from a reference to an organization entity from a organization name
+- Deployment broke, because I changed the schema
 
 
 Forms
