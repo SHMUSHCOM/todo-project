@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import {IconContext} from 'react-icons'
-import {FiMoreVertical, FiTrash2, FiCopy} from 'react-icons/fi'
+import {FiTrash2, FiCopy} from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux';
 import { todoDeleted } from '../../state/slices/todo.slice';
-import { createTodo, useInvalidateTodos } from '../../network/requests';
+import { useCreateTodo, useInvalidateTodos } from '../../network/requests';
 
 
 
@@ -16,7 +16,7 @@ const ActionsMenu = ({id}) => {
     delete clonedTodo?._id
     const {invalidateTodos} = useInvalidateTodos()
 
-    
+    const createTodo = useCreateTodo()
 
     return (
         <Styles className='actions-menu'>

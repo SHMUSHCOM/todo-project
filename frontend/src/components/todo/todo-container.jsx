@@ -1,27 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import TodoItem from "../../todo/todo-item";
-import Loader from "../../loader"
+
+import TodoItem from "./todo-item";
+import Loader from "../loader"
+
 
 import { useSelector, useDispatch } from "react-redux";
-import { todoSelected } from '../../../state/slices/app.slice';
-import { useInvalidateTodos, getProtectedUserData } from '../../../network/requests';
+import { todoSelected } from '../../state/slices/app.slice';
+import { useInvalidateTodos } from '../../network/requests';
+import { useGetUsers } from '../../network/requests';
+import { useGetLoggedUser } from '../../network/requests';
 
 const TodoContainer = () => {
 
-    // TESTING ACCESS TOKEN
-    const accessToken = useSelector(state => state.app.accessToken)
-    useEffect(()=>{
-        (async function(){
-            const user = await getProtectedUserData(accessToken)
-            console.log({protected:user})
-        })()
-    },[])
-
     // REFRESH CACHE ON MOUNT
+    const getUsers = useGetUsers()
+    const user = useGetLoggedUser()
     const {invalidateTodos, isLoading} = useInvalidateTodos()
     useEffect(()=>{
         invalidateTodos()
+        getUsers()
     } ,[])
 
     // GET APP STATE
@@ -49,13 +47,15 @@ const TodoContainer = () => {
         if (!selectedTodoIsVisible || !selectedTodo) dispatch(todoSelected(sortedTodos[0]?._id))
     },[statusFilter, searchFilter])
 
+
+    
+
     return (
         <Styles>{
             isLoading
                 ? <Loader></Loader>
                 : <div className="todo-container">{todos.map((todo) => (<TodoItem key={todo?._id} {...todo}></TodoItem>))}</div>
             }
-            
         </Styles>
     );
 }

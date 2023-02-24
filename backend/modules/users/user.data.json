@@ -1,6 +1,31 @@
-{
-  "firstName": "adam",
-  "lastName": "walker",
-  "email": "adam@walkers4u.com",
-  "role": ["Administrator"]
-}
+[
+  {
+    "_id": "63f762b30f6f3235dbdeca1e",
+    "email": "adam@shmush.com",
+    "password": "$2a$10$0GFQDrnlEJWf/3NxET5JTO9cGyZfTGKEt7WsWbfCFeZKUudSz4h0.",
+    "firstName": "Adam",
+    "lastName": "Walker",
+    "role": "ADMINISTRATOR",
+    "organization": "63f3a006d8c6e8f88b11e28c"
+  },
+
+  {
+    "_id": "63f762b30f6f3235dbdeca1f",
+    "firstName": "John",
+    "lastName": "Black",
+    "email": "jon@blob.com",
+    "password": "$2a$10$0GFQDrnlEJWf/3NxET5JTO9cGyZfTGKEt7WsWbfCFeZKUudSz4h0.",
+    "role": "ADMINISTRATOR",
+    "organization": "63f39ff2d8c6e8f88b11e28a"
+  },
+
+  {
+    "_id": "63f762b30f6f3235dbdeca20",
+    "firstName": "Max",
+    "lastName": "Blue",
+    "email": "max@blob.com",
+    "password": "$2a$10$0GFQDrnlEJWf/3NxET5JTO9cGyZfTGKEt7WsWbfCFeZKUudSz4h0.",
+    "role": "CONTRIBUTOR",
+    "organization": "63f39ff2d8c6e8f88b11e28a"
+  }
+]

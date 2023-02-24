@@ -5,7 +5,7 @@ import LeftPanel from "./components/layout/panel-left";
 import RightPanel from "./components/layout/panel-right";
 import Main from "./components/layout/main";
 import Content from "./components/layout/content";
-
+import ErrorBoundary from "./components/ErrorBoundary";
 
 
 function App() {
@@ -15,9 +15,11 @@ function App() {
       <Header/>
       <Main>
         <LeftPanel/>
-        <Content>
-          <Outlet/>
-        </Content>
+          <Content>
+            <ErrorBoundary>
+              <Outlet/>
+            </ErrorBoundary>
+          </Content>
         <RightPanel/>
       </Main>
     </React.Fragment>

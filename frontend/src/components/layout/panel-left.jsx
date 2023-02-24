@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import NavItem from "../../components/navigation/nav-item";
-import { FiList, FiAlignLeft, FiGrid, FiGlobe } from "react-icons/fi";
+import { FiList, FiAlignLeft, FiGrid, FiGlobe, FiUsers } from "react-icons/fi";
 
 const LeftPanel = () => {
   return (
@@ -16,8 +16,8 @@ const LeftPanel = () => {
           </li>
           <li>
             <NavItem to="/board">
-              <FiGrid />
-              Board
+              <FiUsers />
+              Users
             </NavItem>
           </li>
           <li>

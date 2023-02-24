@@ -1,18 +1,23 @@
 import React from 'react';
 import Select from 'react-select'
-import StatusItem from './status-item'
+import { useSelector } from 'react-redux';
+import {useEffect} from 'react'
 
 
-export const OPTIONS = [
-    {value: 'NOTSTARTED', label:<StatusItem status='NOTSTARTED'/> },
-    {value: 'INPROGRESS', label:<StatusItem status='INPROGRESS'/> },
-    {value: 'DONE', label:<StatusItem status='DONE'/> },
-]
+// export const OPTIONS = [
+//     {value: '63f762b30f6f3235dbdeca1e', label: "Adam Walker" },
+//     {value: '63f762b30f6f3235dbdeca1f', label:"John Black" },
+//     {value: '63f762b30f6f3235dbdeca20', label:"Max Blue" },
+// ]
 
-const StatusSelect = ({field}) => {
+const UserSelect = ({field}) => {
+
+
+    const OPTIONS = useSelector(state => state.users)?.map( user => ({label: `${user.firstName} ${user.lastName}`, value: user._id}))
 
     const customTheme = (theme) => ({
         ...theme,
+        fontWeight: 100,
         colors: {
             ...theme.colors,
             primary25: 'var(--light-purple)',
@@ -27,6 +32,7 @@ const StatusSelect = ({field}) => {
         })
     }
 
+
     return (
         <Select         
             {...field}
@@ -34,7 +40,7 @@ const StatusSelect = ({field}) => {
             theme={customTheme}
             styles={customStyles}
             
-            placeholder={'Select status'}
+            placeholder={'Select user'}
             noOptionsMessage={() =>  'No results'}
         
             isClearable
@@ -43,4 +49,4 @@ const StatusSelect = ({field}) => {
     );
 }
 
-export default StatusSelect;
+export default UserSelect;

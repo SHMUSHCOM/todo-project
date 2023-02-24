@@ -29,7 +29,7 @@ Database Sync Questions?
 - Keep the id's in mongo the same? 
 - What about multiple clients? Another client has deleted something on the DB? 
 
-
+How to do keyboard navigation in the modal?
 
 
 
@@ -47,7 +47,36 @@ Project Questions 12th Feb 2023
 - What to store in the server side, what to store in the local storage? 
 - How would you add a modal
 
+Data modelling:
+- Todos - They have an owner, and the owner can belong to an organization. 
+  - Need to sometimes get all the todos for an owner
+  - Need sometimes to get all the todos in an organization
 
+Changing the data model
+- Changing property names? 
+- Moving from a reference to an organization entity from a organization name
+
+
+Forms
+- Should I make one form component that highly configurable? Or separate forms
+- 
+
+Auth:
+JWT token - Should I use bearer pattern for passing the access token? 
+Where should I check Role / access to the specific Todo?  Get / Update / Delete / Create
+
+Should I store the the org ID and the User ID on the todo? Or should I store the org ID on the user and do a Join to get the all todos for the org. 
+
+When server is down, there is no response??? How to handle timeouts? 
+
+Drop down with users
+- Keep a list of users in the state
+- Or get a list of users from the database?
+
+
+Mongoose:
+How to filter on populated fields? 
+Using Lean to just convert results to POJO? 
 
 **Course**
 - Sockets?

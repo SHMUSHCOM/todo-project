@@ -28,7 +28,7 @@ const Styles = styled.div`
   }
 
   @media only screen and (max-width: 600px) {
-      
+      display:none;
       width: 100vw;
       height: 40%;
       padding: 20px;

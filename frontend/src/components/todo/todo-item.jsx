@@ -38,7 +38,7 @@ const TodoItem = ({
     >
       <div className="owner">
         <Avatar className="avatar" />
-        <span className="owner-name">{owner}</span>
+        <span className="owner-name">{owner?.firstName}</span>
       </div>
       <span className="title">{title}</span>
       <Tags className="tags" tags={tags}></Tags>

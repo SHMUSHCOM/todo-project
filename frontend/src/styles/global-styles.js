@@ -18,9 +18,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    height: 100vh;
-    height: -webkit-fill-available;
-    height: fill-available;
+    height: 100dvh;
+    /* height: -webkit-fill-available;
+    height: fill-available; */
     margin:0;
     padding: 0;
   }
@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding:0;
     height: 100%;
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
     /* height: fill-available; */
     display: flex;
     place-items: center;
@@ -48,6 +48,21 @@ const GlobalStyles = createGlobalStyle`
   a {
   font-weight: 500;
   text-decoration: none;
+  }
+
+  .ReactModal__Content {
+    transform: scale(0.90);
+    opacity: 0;
+    transition: 
+      transform 300ms cubic-bezier(1,-1.35, 0, 2.54),
+      opacity 300ms ease-in
+    /* transition: transform 500ms cubic-bezier(1,-0.49, 0, 1.53); */
+  }
+
+  .ReactModal__Content--after-open {
+    transform: scale(1);
+    opacity: 1;
+    
   }
 
 `

@@ -1,12 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { createTodo, useInvalidateTodos } from "../../../network/requests";
-import { statusFilterSelected, todoSelected } from "../../../state/slices/app.slice";
+import { useInvalidateTodos } from "../../network/requests";
+import { statusFilterSelected } from "../../state/slices/app.slice";
 
 import styled from "styled-components";
-import Button from "../../button";
-import Status from "../../todo/status-item";
+import Button from "../button";
+import Status from "./status-item";
+import TodoModal from "./todo-modal";
 
 const Filters = () => {
   const todos = useSelector(state => state.todos);
@@ -15,24 +16,11 @@ const Filters = () => {
   const inprogressTodos = todos?.filter(todo => todo.status == "INPROGRESS");
   const notstartedTodos = todos?.filter(todo => todo.status == "NOTSTARTED");
 
+  const [modalOpen, setModalOpen] = useState(false)
   const dispatch = useDispatch();
-  const {invalidateTodos} = useInvalidateTodos()
   
-  const emptyTodo = {
-    owner: "",
-    title: "",
-    details: "",
-    status: "NOTSTARTED",
-    tags: [],
-    due: Date.now(),
-    progress: 0,
-    points: 0,
-  };
-
   const handleNewTodoClick = async () => {
-    const todo = await createTodo(emptyTodo)
-    await invalidateTodos()
-    dispatch(todoSelected(todo._id))
+    setModalOpen(true)
   }
 
   const handleFilterClick = (event) => {
@@ -65,6 +53,7 @@ const Filters = () => {
           <h2>{doneTodos.length}</h2>
         </div>
       </div>
+      <TodoModal {...{modalOpen, setModalOpen}}></TodoModal>
     </Styles>
   );
 };

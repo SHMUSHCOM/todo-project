@@ -7,7 +7,7 @@ import App from './App'
 import Register from './components/auth/register';
 import Login from './components/auth/login'
 import Page404 from "./components/pages/404-page";
-import ListView from "./components/pages/list/todo-list";
+import ListView from "./components/todo/todo-list";
 import BoardView from "./components/pages/board";
 import TimelineView from "./components/pages/timeline";
 

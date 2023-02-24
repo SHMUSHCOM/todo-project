@@ -18,8 +18,11 @@ const Styles = styled.div`
     height: var(--header-height);
     padding: 0 20px;
     margin: 0;
+    
     position: fixed;
     top: 0;
+    z-index: 1;
+
     display: flex;
     align-items: center;
     justify-content: space-between;

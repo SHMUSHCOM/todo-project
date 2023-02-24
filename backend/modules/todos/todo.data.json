@@ -1,292 +1,263 @@
 [
   {
-    "title": "Complete project presentation",
-    "details": "Prepare and present project to the board",
-    "owner": "Maxwell Smith",
-    "status": "INPROGRESS",
-    "tags": ["project", "presentation"],
-    "due": "2020-10-14",
-    "progress": 92,
-    "points": 15
-  },
-  {
-    "title": "Create database",
-    "details": "Create database for company website",
-    "owner": "Rachel Jones",
-    "status": "NOTSTARTED",
-    "tags": ["database", "website"],
-    "due": "2020-11-01",
-    "progress": 0,
-    "points": 9
-  },
-  {
-    "title": "Design layout",
-    "details": "Design the layout for the company website",
-    "owner": "Maxwell Smith",
-    "status": "INPROGRESS",
-    "tags": ["website", "layout"],
-    "due": "2020-11-20",
-    "progress": 52,
-    "points": 14
-  },
-  {
-    "title": "Develop software",
-    "details": "Develop software for new product",
-    "owner": "Rachel Jones",
-    "status": "NOTSTARTED",
-    "tags": ["software", "product"],
-    "due": "2020-12-15",
-    "progress": 0,
-    "points": 18
-  },
-  {
-    "title": "Plan marketing strategy",
-    "details": "Plan and execute marketing strategy for new product",
-    "owner": "Maxwell Smith",
-    "status": "NOTSTARTED",
-    "tags": ["marketing", "strategy", "product"],
-    "due": "2020-11-30",
-    "progress": 0,
-    "points": 17
-  },
-  {
-    "title": "Finish report",
-    "details": "Finish report on customer satisfaction",
-    "owner": "Maxwell Smith",
-    "status": "INPROGRESS",
-    "tags": ["report", "customer"],
-    "due": "2020-10-30",
-    "progress": 76,
-    "points": 10
-  },
-  {
-    "title": "Develop mobile app",
-    "details": "Develop mobile app for new product",
-    "owner": "Rachel Jones",
-    "status": "NOTSTARTED",
-    "tags": ["mobile", "app", "product"],
-    "due": "2020-12-10",
-    "progress": 0,
-    "points": 19
-  },
-  {
-    "title": "Plan budget",
-    "details": "Plan budget for the next quarter",
-    "owner": "Maxwell Smith",
-    "status": "NOTSTARTED",
-    "tags": ["budget", "quarter"],
-    "due": "2020-12-31",
-    "progress": 0,
-    "points": 12
-  },
-  {
-    "title": "Test new software",
-    "details": "Test the new software for any bugs or errors",
-    "owner": "Rachel Jones",
-    "status": "INPROGRESS",
-    "tags": ["software", "test"],
-    "due": "2020-11-20",
-    "progress": 32,
-    "points": 16
-  },
-  {
-    "title": "Research new technology",
-    "details": "Research new technology for potential use in the company",
-    "owner": "Maxwell Smith",
-    "status": "NOTSTARTED",
-    "tags": ["research", "technology"],
-    "due": "2020-10-25",
-    "progress": 0,
-    "points": 13
-  },
-  {
-    "title": "Create website",
-    "details": "Create website for the company",
-    "owner": "Rachel Jones",
-    "status": "INPROGRESS",
-    "tags": ["website", "create"],
-    "due": "2020-11-15",
-    "progress": 68,
-    "points": 8
-  },
-  {
-    "title": "Evaluate new products",
-    "details": "Evaluate new products for potential use in the company",
-    "owner": "Maxwell Smith",
-    "status": "NOTSTARTED",
-    "tags": ["products", "evaluate"],
-    "due": "2020-10-20",
-    "progress": 0,
-    "points": 11
-  },
-  {
-    "title": "Implement new software",
-    "details": "Implement new software in the company",
-    "owner": "Rachel Jones",
-    "status": "INPROGRESS",
-    "tags": ["software", "implement"],
-    "due": "2020-11-10",
-    "progress": 45,
-    "points": 7
-  },
-  {
+    "owner": "63f762b30f6f3235dbdeca20",
+    "creator": "63f762b30f6f3235dbdeca20",
     "title": "Organize team meeting",
     "details": "Organize team meeting for the week",
-    "owner": "Maxwell Smith",
     "status": "NOTSTARTED",
     "tags": ["meeting", "team"],
-    "due": "2020-10-17",
-    "progress": 0,
-    "points": 20
+    "due": "2020-10-17T00:00:00.000Z",
+    "points": 20,
+    "progress": 0
   },
   {
+    "owner": "63f762b30f6f3235dbdeca20",
+    "creator": "63f762b30f6f3235dbdeca20",
     "title": "Build customer database",
     "details": "Build customer database for the company",
-    "owner": "Liza Wills",
     "status": "DONE",
     "tags": ["customer", "database"],
-    "due": "2020-10-15",
-    "progress": 100,
-    "points": 15
+    "due": "2020-10-15T00:00:00.000Z",
+    "points": 15,
+    "progress": 100
   },
   {
-    "title": "Test new products",
-    "details": "Test new products for potential use in the company",
-    "owner": "Rosa Doherty",
-    "status": "INPROGRESS",
-    "tags": ["products", "test"],
-    "due": "2020-11-25",
-    "progress": 75,
-    "points": 19
-  },
-  {
-    "title": "Develop prototype",
-    "details": "Develop prototype for new product",
-    "owner": "Liza Wills",
+    "owner": "63f762b30f6f3235dbdeca20",
+    "creator": "63f762b30f6f3235dbdeca20",
+    "title": "Evaluate new products",
+    "details": "Evaluate new products for potential use in the company",
+
     "status": "NOTSTARTED",
-    "tags": ["prototype", "product"],
-    "due": "2020-12-05",
-    "progress": 0,
-    "points": 8
+    "tags": ["products", "evaluate"],
+    "due": "2020-10-20T00:00:00.000Z",
+    "points": 11,
+    "progress": 0
   },
   {
+    "owner": "63f762b30f6f3235dbdeca20",
+    "creator": "63f762b30f6f3235dbdeca20",
+    "title": "Implement new software",
+    "details": "Implement new software in the company",
+
+    "status": "INPROGRESS",
+    "tags": ["software", "implement"],
+    "due": "2020-11-10T00:00:00.000Z",
+    "points": 7,
+    "progress": 45
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca20",
+    "creator": "63f762b30f6f3235dbdeca20",
     "title": "Analyze data",
     "details": "Analyze data to determine customer trends",
-    "owner": "Rosa Doherty",
+
     "status": "DONE",
     "tags": ["data", "customer"],
-    "due": "2020-10-10",
-    "progress": 100,
-    "points": 13
+    "due": "2020-10-10T00:00:00.000Z",
+    "points": 13,
+    "progress": 100
   },
   {
+    "owner": "63f762b30f6f3235dbdeca1e",
+    "creator": "63f762b30f6f3235dbdeca1e",
     "title": "Write marketing plan",
     "details": "Write marketing plan for the next quarter",
-    "owner": "Liza Wills",
+
     "status": "INPROGRESS",
     "tags": ["marketing", "plan", "quarter"],
-    "due": "2020-11-05",
-    "progress": 61,
-    "points": 16
+    "due": "2020-11-05T00:00:00.000Z",
+    "points": 16,
+    "progress": 61
   },
   {
-    "title": "Organize family gathering",
-    "details": "Organize a family gathering for upcoming weekend. Invite family members and plan food menu.",
-    "owner": "Liza Wills",
-    "status": "INPROGRESS",
-    "tags": ["family", "gathering"],
-    "due": "2020-07-19T14:30:00",
-    "progress": 57,
-    "points": 11
-  },
-  {
+    "owner": "63f762b30f6f3235dbdeca1e",
+    "creator": "63f762b30f6f3235dbdeca1e",
     "title": "Buy groceries",
     "details": "Go to the grocery store and buy the items on the list.",
-    "owner": "Rosa Doherty",
+
     "status": "NOTSTARTED",
     "tags": ["shopping", "grocery"],
-    "due": "2020-07-15T16:45:00",
-    "progress": 0,
-    "points": 18
+    "due": "2020-07-15T13:45:00.000Z",
+    "points": 18,
+    "progress": 0
   },
   {
-    "title": "Attend webinar",
-    "details": "Attend a webinar about software development.",
-    "owner": "Leo Henderson",
-    "status": "NOTSTARTED",
-    "tags": ["webinar", "education"],
-    "due": "2020-07-17T12:15:00",
-    "progress": 0,
-    "points": 3
+    "owner": "63f762b30f6f3235dbdeca1e",
+    "creator": "63f762b30f6f3235dbdeca1e",
+    "title": "Organize family gathering",
+    "details": "Organize a family gathering for upcoming weekend. Invite family members and plan food menu.",
+
+    "status": "INPROGRESS",
+    "tags": ["family", "gathering"],
+    "due": "2020-07-19T11:30:00.000Z",
+    "points": 11,
+    "progress": 57
   },
   {
+    "owner": "63f762b30f6f3235dbdeca1e",
+    "creator": "63f762b30f6f3235dbdeca1e",
+    "title": "Test new products",
+    "details": "Test new products for potential use in the company",
+    "status": "INPROGRESS",
+    "tags": ["products", "test"],
+    "due": "2020-11-25T00:00:00.000Z",
+    "points": 19,
+    "progress": 75
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca1e",
+    "creator": "63f762b30f6f3235dbdeca1e",
     "title": "Clean the house",
     "details": "Clean the house and make sure everything is in order.",
-    "owner": "William Moore",
+
     "status": "INPROGRESS",
     "tags": ["cleaning", "house"],
-    "due": "2020-07-18T11:30:00",
-    "progress": 75,
-    "points": 16
+    "due": "2020-07-18T08:30:00.000Z",
+    "points": 16,
+    "progress": 75
   },
   {
+    "owner": "63f762b30f6f3235dbdeca1e",
+    "creator": "63f762b30f6f3235dbdeca1e",
     "title": "Prepare presentation",
     "details": "Prepare a presentation for the upcoming meeting.",
-    "owner": "Hannah Richards",
+
     "status": "DONE",
     "tags": ["presentation", "meeting"],
-    "due": "2020-07-20T09:15:00",
-    "progress": 100,
-    "points": 20
+    "due": "2020-07-20T06:15:00.000Z",
+    "points": 20,
+    "progress": 100
   },
   {
+    "owner": "63f762b30f6f3235dbdeca1e",
+    "creator": "63f762b30f6f3235dbdeca1e",
     "title": "Book tickets",
     "details": "Book tickets for the upcoming trip to Florida.",
-    "owner": "Olivia Taylor",
+
     "status": "NOTSTARTED",
     "tags": ["travel", "tickets"],
-    "due": "2020-07-21T17:30:00",
-    "progress": 0,
-    "points": 6
+    "due": "2020-07-21T14:30:00.000Z",
+    "points": 6,
+    "progress": 0
   },
   {
-    "title": "Plan camping trip",
-    "details": "Plan a camping trip for next weekend.",
-    "owner": "Ava Wilson",
+    "owner": "63f762b30f6f3235dbdeca1e",
+    "creator": "63f762b30f6f3235dbdeca1e",
+    "title": "Develop prototype",
+    "details": "Develop prototype for new product",
+
     "status": "NOTSTARTED",
-    "tags": ["camping", "trip"],
-    "due": "2020-07-19T20:45:00",
-    "progress": 0,
-    "points": 2
+    "tags": ["prototype", "product"],
+    "due": "2020-12-05T00:00:00.000Z",
+    "points": 8,
+    "progress": 0
   },
   {
-    "title": "Order new furniture",
-    "details": "Order new furniture for the living room.",
-    "owner": "Emily Miller",
-    "status": "INPROGRESS",
-    "tags": ["furniture", "shopping"],
-    "due": "2020-07-22T14:00:00",
-    "progress": 35,
-    "points": 11
-  },
-  {
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
     "title": "Pay bills",
     "details": "Pay the monthly bills on time.",
-    "owner": "Lily Davis",
+
     "status": "DONE",
     "tags": ["bills", "payment"],
-    "due": "2020-07-18T23:30:00",
-    "progress": 100,
-    "points": 20
+    "due": "2020-07-18T20:30:00.000Z",
+    "points": 20,
+    "progress": 100
   },
   {
-    "title": "Renovate the kitchen",
-    "details": "Renovate the kitchen and make it look more modern.",
-    "owner": "Ethan Brown",
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
+    "title": "Plan camping trip",
+    "details": "Plan a camping trip for next weekend.",
+
+    "status": "NOTSTARTED",
+    "tags": ["camping", "trip"],
+    "due": "2020-07-19T17:45:00.000Z",
+    "points": 2,
+    "progress": 0
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
+    "title": "Attend webinar",
+    "details": "Attend a webinar about software development.",
+
+    "status": "NOTSTARTED",
+    "tags": ["webinar", "education"],
+    "due": "2020-07-17T09:15:00.000Z",
+    "points": 3,
+    "progress": 0
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
+    "title": "Develop software",
+    "details": "Develop software for new product",
+
+    "status": "NOTSTARTED",
+    "tags": ["software", "product"],
+    "due": "2020-12-15T00:00:00.000Z",
+    "points": 18,
+    "progress": 0
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
+    "title": "Plan marketing strategy",
+    "details": "Plan and execute marketing strategy for new product",
+
+    "status": "NOTSTARTED",
+    "tags": ["marketing", "strategy", "product"],
+    "due": "2020-11-30T00:00:00.000Z",
+    "points": 17,
+    "progress": 0
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
+    "title": "Finish report",
+    "details": "Finish report on customer satisfaction",
+
     "status": "INPROGRESS",
-    "tags": ["renovation", "kitchen"],
-    "due": "2020-07-21T10:45:00",
-    "progress": 80,
-    "points": 12
+    "tags": ["report", "customer"],
+    "due": "2020-10-30T00:00:00.000Z",
+    "points": 10,
+    "progress": 76
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
+    "title": "Create website",
+    "details": "Create website for the company",
+
+    "status": "INPROGRESS",
+    "tags": ["website", "create"],
+    "due": "2020-11-15T00:00:00.000Z",
+    "points": 8,
+    "progress": 68
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
+    "title": "Create database",
+    "details": "Create database for company website",
+
+    "status": "NOTSTARTED",
+    "tags": ["database", "website"],
+    "due": "2020-11-01T00:00:00.000Z",
+    "points": 9,
+    "progress": 0
+  },
+  {
+    "owner": "63f762b30f6f3235dbdeca1f",
+    "creator": "63f762b30f6f3235dbdeca1f",
+    "title": "Test new software",
+    "details": "Test the new software for any bugs or errors",
+
+    "status": "INPROGRESS",
+    "tags": ["software", "test"],
+    "due": "2020-11-20T00:00:00.000Z",
+    "points": 16,
+    "progress": 32
   }
 ]

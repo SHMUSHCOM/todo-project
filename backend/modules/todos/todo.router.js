@@ -1,16 +1,9 @@
 import { Router } from "express";
 import Todo from './todo.model.js'
-
-
+import { authorize } from "../auth/auth.router.js";
+import { ROLES } from "../users/user.model.js";
 
 const router = new Router()
-
-// CREATE TODO (MULTIPLE)
-router.post('/', async (request, response, next) => {
-    console.log(request.body)
-    const documents = await Todo.create(...request.body)
-    response.status(200).json(documents)
-})
 
 // SYNC CLIENT UPDATES WITH SERVER
 router.post('/sync', async (request, response, next) => {
@@ -52,11 +45,36 @@ router.post('/sync', async (request, response, next) => {
     response.status(200).json({message: "success"})
 })
 
+// CREATE TODO (MULTIPLE)
+router.post('/', async (request, response, next) => {
+    const todos = request.body.map( todo => ({creator: request.user.id,...todo}))
+    const documents = await Todo.create(...todos)
+    response.status(200).json(documents)
+})
+
+
+// READ TODO BY USER
+router.get('/user/', async (request, response, next) => {
+    const {id} = request.user
+    const documents = await Todo.where('owner').equals(id)
+    response.status(200).json(documents)
+})
+
 // READ ALL TODOS
 router.get('/', async (request, response, next) => {
-    const collection = await Todo.find()
-    response.status(200).json(collection)
+    const {role, id, organization} = request.user
+    let documents = null
+    
+    // ***** OPEN ITEM - NEED TO FILTER OUT THE TODOS THAT ARE NOT PART OF THE ORGANIZATION
+    if (role == ROLES.ADMINISTRATOR) documents = await Todo.find().populate('owner').lean()
+    if (role == ROLES.CONTRIBUTOR) documents = await Todo.where('owner').equals(id).populate('owner').lean()
+    
+
+    const filteredDocuments = documents.filter( todo => String(todo.owner.organization) == organization)
+    response.status(200).json(filteredDocuments)
 })
+
+
  
 // READ ONE TODO
 router.get('/:id', async (request, response, next) => {
@@ -64,6 +82,8 @@ router.get('/:id', async (request, response, next) => {
     const document = await Todo.findById(id)
     response.status(200).json(document)
 })
+
+
 
 
 //REPLACE
