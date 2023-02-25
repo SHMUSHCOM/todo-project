@@ -1,6 +1,6 @@
-import React, { useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
-import { useForm, useWatch } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 
 import Button from "../button"
@@ -8,14 +8,20 @@ import Logo from "../logo"
 import MarketingPanel from "./marketing-panel"
 
 import { useDispatch } from "react-redux"
-import { registerUser } from "../../network/requests"
+import { registerUser } from "../../network/auth.requests"
 import { accessTokenUpdated } from "../../state/slices/app.slice"
 
 const SignUp = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
-  const {register,handleSubmit,formState: { errors },setError,clearErrors,} = useForm()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+    clearErrors,
+  } = useForm()
   const submit = async formData => {
     try {
       const { data, success } = await registerUser(formData)
@@ -79,7 +85,6 @@ const SignUp = () => {
 
               <div className="buttons">
                 <Button type="submit">Register with Email</Button>
-
                 <Button primary={false}>
                   <img src="/google.png" alt="Google Logo" />
                   Register with Google
@@ -105,7 +110,9 @@ const SignUp = () => {
         </div>
       </div>
 
-      <div className="right"><MarketingPanel /></div>
+      <div className="right">
+        <MarketingPanel />
+      </div>
     </Styles>
   )
 }
@@ -207,7 +214,6 @@ const Styles = styled.div`
 
   .right {
     flex-basis: 100%;
-    
   }
   @media only screen and (max-width: 600px) {
     height: -webkit-fill-available;

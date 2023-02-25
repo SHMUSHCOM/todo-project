@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
 import TodoForm from "./create-form"
-import { useInvalidateTodos } from "../../network/requests"
+import { useInvalidateTodos } from "../../network/todo.requests"
 
 import { FiX, FiMaximize2 } from "react-icons/fi"
 import ReactModal from "react-modal"

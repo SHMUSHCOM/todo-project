@@ -1,7 +1,7 @@
-import { useSyncTodos } from '../../network/requests.js'
+import { useSyncTodos } from '../../network/todo.requests.js'
 
 export default store => next => async action => {
-    if (!['todos/todoCreated', 'todos/todoUpdated', 'todos/todoDeleted'].includes(action.type) ) return next(action)
+    if (!['todos/todoCreated', 'todos/todoUpdated',].includes(action.type) ) return next(action)
     
     next(action)
     const {todos, app: {accessToken}} = store.getState()

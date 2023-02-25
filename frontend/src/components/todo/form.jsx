@@ -10,9 +10,6 @@ import EmptyState from './empty-state';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { todoUpdated } from '../../state/slices/todo.slice';
-import { todoSelected } from '../../state/slices/app.slice';
-import { useCreateTodo , useGetUsers } from '../../network/requests';
-
 
 import {formatDatePicker} from '../../utils/date';
 

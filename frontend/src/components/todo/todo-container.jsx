@@ -7,9 +7,9 @@ import Loader from "../loader"
 
 import { useSelector, useDispatch } from "react-redux";
 import { todoSelected } from '../../state/slices/app.slice';
-import { useInvalidateTodos } from '../../network/requests';
-import { useGetUsers } from '../../network/requests';
-import { useGetLoggedUser } from '../../network/requests';
+import { useInvalidateTodos } from '../../network/todo.requests';
+import { useGetUsers } from '../../network/user.requests';
+import { useGetLoggedUser } from '../../network/user.requests';
 
 const TodoContainer = () => {
 

@@ -9,7 +9,7 @@ import {OPTIONS}  from './status-select'
 import { useSelector, useDispatch } from 'react-redux';
 import { todoUpdated } from '../../state/slices/todo.slice';
 import { todoSelected } from '../../state/slices/app.slice';
-import { useCreateTodo } from '../../network/requests';
+import { useCreateTodo } from '../../network/todo.requests';
 
 import {formatDatePicker} from '../../utils/date';
 

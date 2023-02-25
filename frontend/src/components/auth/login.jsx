@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 
 import { accessTokenUpdated } from "../../state/slices/app.slice"
 import { useDispatch } from "react-redux"
-import { loginUser } from "../../network/requests"
+import { loginUser } from "../../network/auth.requests.js"
 
 import Logo from "../logo"
 import Button from "../button"

@@ -4,10 +4,9 @@ import { todosFetched } from "../state/slices/todo.slice"
 import { usersFetched } from "../state/slices/user.slice"
 import { userUpdated } from "../state/slices/app.slice"
 import { useNavigate } from "react-router-dom"
-
 const { VITE_SERVER_URL } = import.meta.env
-const todoEndpoint = `${VITE_SERVER_URL}/todos`
 
+const todoEndpoint = `${VITE_SERVER_URL}/todos`
 // FETCH TODOS
 const fetchTodos = async accessToken => {
   const method = "GET"
@@ -56,7 +55,7 @@ export const useSyncTodos = (todos, accessToken)=>{
   }
 }
 
-// CREATE NEW TODO ON SERVER
+// CREATE TODO
 export const useCreateTodo = ()=>{
   const accessToken = useSelector(state => state.app.accessToken)
   const [isLoading, setIsLoading] = useState(false)
@@ -79,71 +78,58 @@ export const useCreateTodo = ()=>{
   }
 }
 
-// AUTH | REGISTER USER
-const registerEndpoint = `${VITE_SERVER_URL}/auth/register`
-export const registerUser = async ({ email, password }) => {
-  const method = "POST"
-  const headers = { "content-type": "application/json" }
-  const body = JSON.stringify({ email, password })
 
-  const response = await fetch(registerEndpoint, { method, headers, body })
-  const data = await response.json()
+// UPDATE TODO
+export const useUpdateTodo = ()=> {
 
-  console.log(data)
-  return { data, success: response.ok }
-}
-
-// AUTH | LOGIN
-const loginEndpoint = `${VITE_SERVER_URL}/auth/email/login`
-export const loginUser = async ({ email, password }) => {
-  const method = "POST"
-  const headers = { "content-type": "application/json" }
-  const body = JSON.stringify({ email, password })
-
-  const response = await fetch(loginEndpoint, { method, headers, body })
-  const data = await response.json()
-
-  return {data, success: response.ok}
-}
-
-// GET LOGGED IN USER
-const loggedUserEndpoint = `${VITE_SERVER_URL}/users/self`
-export const useGetLoggedUser = async () => {
-  const accessToken = useSelector(state => state.app.accessToken)
-  const dispatch = useDispatch()
-  const method = "GET"
-  const headers = [
-    ["content-type", "application/json"],
-    ["access-token", accessToken],
-  ]
-  const response = await fetch(loggedUserEndpoint, { method, headers })
-  const user = await response.json()
-  dispatch(userUpdated(user))
-  return user
-}
-
-const userEndpoint = `${VITE_SERVER_URL}/users/`
-// GET USERS FOR ORGANIZATION
-export const useGetUsers = ()=>{
   const accessToken = useSelector(state => state.app.accessToken)
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-  const dispatch = useDispatch()
-
-  return async () => {
-    const method = "GET"
+  return async todo => {
+    const method = "PATCH"
     const headers = [
       ["content-type", "application/json"],
       ["access-token", accessToken],
     ]
-
+    const body = JSON.stringify([todo])
+    
     setIsLoading(true)
-    const response = await fetch(userEndpoint, { method, headers })
-    const users = await response.json()
-    dispatch(usersFetched(users))
+    const response = await fetch(todoEndpoint, { method, headers, body })
+    const data = await response.json()
     setIsLoading(false)
     setIsError(!response.ok) 
 
-    return {users, isError, isLoading}
+    return {data, isError, isLoading}
   }
 }
+
+
+
+
+// DELETE TODO
+export const useDeleteTodo = ()=> {
+  
+  const accessToken = useSelector(state => state.app.accessToken)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+
+  return async todoId => {
+    const method = "DELETE"
+    const headers = [
+      ["content-type", "application/json"],
+      ["access-token", accessToken],
+    ]
+    
+    const path = todoEndpoint + `/${todoId}`
+
+    setIsLoading(true)
+    const response = await fetch(path, { method, headers })
+    const data = await response.json()
+    setIsLoading(false)
+    setIsError(!response.ok) 
+
+    return {data, isError, isLoading}
+  }
+}
+
+

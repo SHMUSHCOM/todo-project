@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { useInvalidateTodos } from "../../network/requests";
+import { useInvalidateTodos } from "../../network/todo.requests";
 import { statusFilterSelected } from "../../state/slices/app.slice";
 
 import styled from "styled-components";

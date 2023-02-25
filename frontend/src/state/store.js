@@ -23,7 +23,8 @@ const reducer = (state, action) => {
 const store = configureStore({
   reducer, 
   preloadedState: preLoadedState,
-  middleware: (getDefaultMiddleware)=> [...getDefaultMiddleware(), setLocalStorage, setServerStorage]
+  // middleware: (getDefaultMiddleware)=> [...getDefaultMiddleware(), setLocalStorage, setServerStorage]
+  middleware: (getDefaultMiddleware)=> [...getDefaultMiddleware(), setLocalStorage]
 })
 
 export default store;

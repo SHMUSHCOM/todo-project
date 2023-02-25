@@ -11,7 +11,7 @@ const LeftPanel = () => {
           <li>
             <NavItem to="/list">
               <FiList/>
-              List
+              Tasks
             </NavItem>
           </li>
           <li>
