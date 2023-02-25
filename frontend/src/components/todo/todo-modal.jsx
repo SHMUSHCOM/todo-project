@@ -10,37 +10,35 @@ import Button from "../button"
 // CUSTOM STYLES | REACT-MODAL
 const customStyles = {
   content: {
-    // minWidth: 500,
-    maxWidth: "95dvw",
-    minHeight: 200,
-    maxHeight: "80dvh",
+    minWidth: "40%",
+    inset: "unset",
+    position: "static",
     margin: "auto",
     overflow: "hidden",
     boxShadow: "2px 2px 10px 2px #22222235",
   },
   overlay: {
     backdropFilter: "blur(5px)",
+    zIndex: "1",
+    display: "grid",
   },
 }
 
 export default function TodoModal({ modalOpen, setModalOpen }) {
   ReactModal.setAppElement("#root")
   const { invalidateTodos } = useInvalidateTodos()
-    useEffect(()=>{
-
-    },[])
   return (
     <ReactModal
       isOpen={modalOpen}
       onRequestClose={event => setModalOpen(false)}
-      shouldCloseOnOverlayClick={false}
+      shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
       shouldReturnFocusAfterClose={false}
       shouldFocusAfterRender={true}
       onAfterClose={invalidateTodos}
       style={customStyles}
     >
-        <ModalContent {...{ modalOpen, setModalOpen }}/>
+        <ModalContent {...{ setModalOpen }}/>
     </ReactModal>
   )
 }
@@ -50,8 +48,8 @@ function ModalContent({ modalOpen, setModalOpen }) {
     <Styles>
       <FiX className="close-icon" onClick={event => setModalOpen(false)} />
       <div className="modal-header">
-        <h1>Create New Todo</h1>
-        <p>Enter the details for a new todo and save the changes</p>
+        <h1>New Task</h1>
+        <p>Enter the details for a new task and save the changes</p>
       </div>
       <div className="form-container">
         <TodoForm {...{ modalOpen, setModalOpen }} />
@@ -61,8 +59,6 @@ function ModalContent({ modalOpen, setModalOpen }) {
 }
 
 const Styles = styled.div`
-  width: 100%;
-  height: 100%;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -97,7 +93,6 @@ const Styles = styled.div`
   }
 
   .form-container {
-    width: 100%;
     overflow: scroll;
   }
 `

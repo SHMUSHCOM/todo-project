@@ -75,6 +75,10 @@ Drop down with users
 - Or get a list of users from the database?
 
 
+Deployment - Online version feels very slow
+  Optimistic updates? 
+
+
 Mongoose:
 How to filter on populated fields? 
 Using Lean to just convert results to POJO? 
