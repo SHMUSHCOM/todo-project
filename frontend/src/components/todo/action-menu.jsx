@@ -1,12 +1,13 @@
 import React from "react"
 import styled from "styled-components"
+
 import { IconContext } from "react-icons"
 import { FiTrash2, FiCopy } from "react-icons/fi"
-import { useDispatch, useSelector } from "react-redux"
+
+import { useSelector } from "react-redux"
 import { useCreateTodo, useInvalidateTodos, useDeleteTodo } from "../../network/todo.requests"
 
 const ActionsMenu = ({ id }) => {
-  const dispatch = useDispatch()
   const todo = useSelector(state => state.todos.find(todo => todo?._id == id))
 
   let clonedTodo = { ...todo }

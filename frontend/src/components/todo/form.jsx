@@ -2,24 +2,22 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components'
 
+import { useSelector } from 'react-redux';
+import { useInvalidateTodos, useUpdateTodo } from '../../network/todo.requests';
+import {formatDatePicker} from '../../utils/date';
+
 import Button from '../button';
-import StatusSelect from './status-select';
-import {OPTIONS}  from './status-select'
+import StatusSelect, {OPTIONS}  from './status-select';
 import UserSelect from './user-select';
 import EmptyState from './empty-state';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { todoUpdated } from '../../state/slices/todo.slice';
-
-import {formatDatePicker} from '../../utils/date';
-
-const TodoForm = ({isCreationForm}) => {
-    const dispatch = useDispatch()
+const TodoForm = () => {
+    
     const todos = useSelector( state => state.todos)
     const todo = useSelector( state => todos.find(todo => todo?._id == state.app.selectedTodo))
     const users = useSelector( state => state.users)
     
-    // Transform state data into form data
+    // TRANSFORM | REDUX DATA -> FORM DATA
     const serializeTodo = (todo) => ({ 
         ...todo,
         owner: {label: `${todo?.owner?.firstName} ${todo?.owner?.lastName}`, value: todo?.owner?._id},
@@ -28,7 +26,7 @@ const TodoForm = ({isCreationForm}) => {
         due: formatDatePicker(todo?.due),
     })
 
-    // Transform form data into state data
+    // TRANSFORM | FORM DATA -> REDUX DATA
     const deserializeTodo = (todo) => ({
         ...todo, 
         status: todo?.status?.value,
@@ -36,15 +34,25 @@ const TodoForm = ({isCreationForm}) => {
         owner: users.find( user => user?._id == todo?.owner?.value),
     })
     
-
+    // SETUP REACT HOOK FORM
     const initialFormState = {values:serializeTodo(todo)}
     const { register, handleSubmit, reset, control, formState: {errors, isDirty}} = useForm(initialFormState)
-    const submitData = formData => dispatch(todoUpdated(deserializeTodo(formData)))
     
+    // UPDATE SERVER AND INVALIDATE REDUX STORE
+    const updateTodo = useUpdateTodo()
+    const { invalidateTodos } = useInvalidateTodos()
+    const submitData = async formData => {
+        await updateTodo(deserializeTodo(formData))
+        invalidateTodos()
+    }
+
+    // RESET REACT HOOK FORM
     const resetData = () => reset(serializeTodo(todo))
     
+    // EMPTY STATE
     if (!todo) return <EmptyState/>
 
+    // HAPPY STATE
     return (
        <Styles>
             <form onSubmit={handleSubmit(submitData)} >

@@ -85,16 +85,18 @@ export const useUpdateTodo = ()=> {
   const accessToken = useSelector(state => state.app.accessToken)
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
+  
   return async todo => {
     const method = "PATCH"
     const headers = [
       ["content-type", "application/json"],
       ["access-token", accessToken],
     ]
-    const body = JSON.stringify([todo])
-    
+    const body = JSON.stringify(todo)
+    const path = todoEndpoint + `/${todo._id}`
+
     setIsLoading(true)
-    const response = await fetch(todoEndpoint, { method, headers, body })
+    const response = await fetch(path, { method, headers, body })
     const data = await response.json()
     setIsLoading(false)
     setIsError(!response.ok) 

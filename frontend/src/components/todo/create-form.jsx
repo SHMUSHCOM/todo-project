@@ -7,7 +7,6 @@ import StatusSelect from './status-select';
 import {OPTIONS}  from './status-select'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { todoUpdated } from '../../state/slices/todo.slice';
 import { todoSelected } from '../../state/slices/app.slice';
 import { useCreateTodo } from '../../network/todo.requests';
 
