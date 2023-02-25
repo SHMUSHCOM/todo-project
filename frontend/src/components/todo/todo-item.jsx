@@ -1,40 +1,33 @@
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
-import formatDate from "../../utils/date";
+import React, { useEffect, useRef } from "react"
+import styled from "styled-components"
+import formatDate from "../../utils/date"
 
-import { useDispatch, useSelector } from "react-redux";
-import { todoSelected } from "../../state/slices/app.slice";
+import { useDispatch, useSelector } from "react-redux"
+import { todoSelected } from "../../state/slices/app.slice"
 
-import Avatar from "./avatar";
-import ProgressBar from "./progress-bar";
-import Tags from "./tag";
-import Status from "./status-item";
-import ActionsMenu from "./action-menu";
+import Avatar from "./avatar"
+import ProgressBar from "./progress-bar"
+import Tags from "./tag"
+import Status from "./status-item"
+import ActionsMenu from "./action-menu"
 
-const TodoItem = ({
-  _id,
-  owner,
-  title,
-  status,
-  tags,
-  due,
-  progress,
-  points,
-}) => {
-  const dispatch = useDispatch();
-  const isSelected = useSelector(state => state.app.selectedTodo == _id);
+const TodoItem = ({ _id, owner, title, status, tags, due, progress, points }) => {
+  const dispatch = useDispatch()
+  const isSelected = useSelector(state => state.app.selectedTodo == _id)
 
-  const todoItem = useRef(null);
+  const todoItem = useRef(null)
   useEffect(() => {
-    if (isSelected) todoItem.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, [isSelected]);
+    if (isSelected) todoItem.current.scrollIntoView({ behavior: "smooth", block: "nearest" })
+  }, [isSelected])
 
   return (
     <Styles
       ref={todoItem}
       status={status}
       isSelected={isSelected}
-      onClick={() => {dispatch(todoSelected(_id));}}
+      onClick={() => {
+        dispatch(todoSelected(_id))
+      }}
     >
       <div className="owner">
         <Avatar className="avatar" />
@@ -49,8 +42,8 @@ const TodoItem = ({
       <ProgressBar className="progress" progress={progress} />
       <ActionsMenu className="actions" id={_id} />
     </Styles>
-  );
-};
+  )
+}
 
 const Styles = styled.div`
   cursor: pointer;
@@ -63,7 +56,7 @@ const Styles = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
 
   font-weight: 300;
   background-color: white;
@@ -77,6 +70,15 @@ const Styles = styled.div`
     white-space: nowrap;
   }
 
+  & > .title {
+    flex-grow: 3
+  }
+
+  .due {
+    flex-basis: min-content;
+    flex-grow: 0;
+  }
+
   .points {
     width: 15px;
     display: flex;
@@ -84,6 +86,7 @@ const Styles = styled.div`
   }
 
   .tags {
+    flex-grow: 1.5;
     overflow-x: scroll;
     scroll-behavior: smooth;
   }
@@ -95,9 +98,7 @@ const Styles = styled.div`
   }
 
   ${({ isSelected }) => {
-    return isSelected
-      ? `border: 1px solid var(--purple); box-shadow:  1px 1px 8px 2px #afafaf39; background-color: var(--light-purple); `
-      : ``;
+    return isSelected ? `border: 1px solid var(--purple); box-shadow:  1px 1px 8px 2px #afafaf39; background-color: var(--light-purple); ` : ``
   }}
 
   .owner {
@@ -137,15 +138,6 @@ const Styles = styled.div`
       flex-grow: 0;
     }
   }
+`
 
-  /* ${({ status }) => {
-    return status === "DONE"
-      ? `text-decoration: line-through;
-         text-decoration-color: #939393;
-         text-decoration-thickness: 2px;
-         filter: blur(0.05em);`
-      : ``;
-  }} */
-`;
-
-export default TodoItem;
+export default TodoItem

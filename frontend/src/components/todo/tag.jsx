@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Tags = ({tags}) => {
     return (
         <Styles className='tags'>
-           {tags?.map(tag => tag ?? <span key={tag}>{tag.trim()}</span>)} 
+           {tags?.map(tag => tag && <span key={tag}>{tag.trim()}</span>)} 
         </Styles>
     );
 }

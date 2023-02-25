@@ -19,13 +19,13 @@ const TodoHeader = () => {
     return (
         <Styles>
             <div className="todo-header" ref={header} onClick={sortHandler}>
-                <span tabIndex={0} className={sortColumn == 'owner' ? 'selected' : ''}>Owner</span>
-                <span tabIndex={0} className={sortColumn == 'title' ? 'selected' : ''}>Title</span>
-                <span tabIndex={0} className={sortColumn == 'tags' ? 'selected' : ''}>Tags</span>
-                <span tabIndex={0} className={sortColumn == 'due' ? 'selected' : ''}>Due</span>
-                <span tabIndex={0} className={sortColumn == 'status' ? 'selected' : ''}>Status</span>
-                <span tabIndex={0} className={sortColumn == 'points' ? 'selected points' : 'points'}>Points</span>
-                <span tabIndex={0} className={sortColumn == 'progress' ? 'selected' : ''}>Progress</span>
+                <span tabIndex={0} id="owner" className={sortColumn == 'owner' ? 'selected' : ''}>Owner</span>
+                <span tabIndex={0} id="title" className={sortColumn == 'title' ? 'selected' : ''}>Title</span>
+                <span tabIndex={0} id="tags" className={sortColumn == 'tags' ? 'selected' : ''}>Tags</span>
+                <span tabIndex={0} id="due" className={sortColumn == 'due' ? 'selected' : ''}>Due</span>
+                <span tabIndex={0} id="status" className={sortColumn == 'status' ? 'selected' : ''}>Status</span>
+                <span tabIndex={0} id="points" className={sortColumn == 'points' ? 'selected' : ''}>Points</span>
+                <span tabIndex={0} id="progress" className={sortColumn == 'progress' ? 'selected' : ''}>Progress</span>
             </div>
         </Styles>
     );
@@ -35,11 +35,11 @@ const Styles = styled.div`
     .todo-header {
     width: 100%;
     height: 20px;
-    padding: 0 15px;
+    padding-right: 25px;
     margin-top: 30px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 
     color: black;
     font-weight: 100;
@@ -80,10 +80,28 @@ const Styles = styled.div`
       text-align: start;
     }
 
-    .points {
+    #title {
+        flex-grow: 4;
+    }
+
+    #points {
         flex-basis: 0;
         flex-grow: 0;
-        padding-right: 40px;
+    }
+
+    #tags {
+        flex-grow: 1.5;
+    }
+
+    #due {
+        flex-basis: min-content;
+        flex-grow: 0;
+    }
+
+    #actions {
+        flex-basis: min-content;
+        flex-grow: 0;
+        visibility: hidden;
     }
   }
 

@@ -19,16 +19,14 @@ const GlobalStyles = createGlobalStyle`
 
   html {
     height: 100dvh;
-    /* height: -webkit-fill-available;
-    height: fill-available; */
     margin:0;
     padding: 0;
   }
 
   body {
+    height: 100dvh;
     margin: 0;
     padding:0;
-    height: 100%;
     /* height: -webkit-fill-available; */
     /* height: fill-available; */
     display: flex;
