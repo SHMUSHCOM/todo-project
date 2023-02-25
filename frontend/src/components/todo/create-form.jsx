@@ -36,7 +36,7 @@ const TodoForm = ({setModalOpen}) => {
     })
     
     // SETUP REACT HOOK FORM
-    const initialFormState = {values: serializeTodo({status: "NOTSTARTED", due: Date.now(), owner})}
+    const initialFormState = {values: serializeTodo({status: "NOTSTARTED", due: Date.now(), owner, progress: 0})}
     const { register, handleSubmit, reset, control, formState: {errors, isDirty}} = useForm(initialFormState)
     
     // CREATE TASK ON SERVER

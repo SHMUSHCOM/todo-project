@@ -8,16 +8,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { todoSelected } from '../../state/slices/app.slice';
 import { useInvalidateTodos } from '../../network/todo.requests';
 import { useGetUsers } from '../../network/user.requests';
+import { useGetLoggedUser } from '../../network/user.requests';
 
 const TodoContainer = () => {
 
     // REFRESH CACHE ON MOUNT
     const getUsers = useGetUsers()
+    
     const {invalidateTodos ,isLoading} = useInvalidateTodos()
     
     useEffect(()=>{
         invalidateTodos()
         getUsers()
+        useGetLoggedUser()
     } ,[])
 
     // GET APP STATE
