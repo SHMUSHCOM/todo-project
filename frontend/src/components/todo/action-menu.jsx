@@ -8,7 +8,7 @@ import { useSelector } from "react-redux"
 import { useCreateTodo, useInvalidateTodos, useDeleteTodo } from "../../network/todo.requests"
 
 const ActionsMenu = ({ id }) => {
-  const { invalidateTodos } = useInvalidateTodos()
+  const {invalidateTodos}  = useInvalidateTodos()
   const todo = useSelector(state => state.todos.find(todo => todo?._id == id))
 
   // CREATE CLONED TODO
@@ -25,7 +25,7 @@ const ActionsMenu = ({ id }) => {
   const deleteTodo = useDeleteTodo()
   const handleDeleteClick = async () => {
     await deleteTodo(id)
-    invalidateTodos()
+    await invalidateTodos()
   }
 
   const customStyles = { className: "action-icons", style: { verticalAlign: "middle", color: "var(--purple)" } }

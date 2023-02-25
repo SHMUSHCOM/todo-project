@@ -40,7 +40,7 @@ const TodoForm = () => {
     
     // UPDATE SERVER AND INVALIDATE REDUX STORE
     const updateTodo = useUpdateTodo()
-    const { invalidateTodos } = useInvalidateTodos()
+    const {invalidateTodos} = useInvalidateTodos()
     const submitData = async formData => {
         await updateTodo(deserializeTodo(formData))
         invalidateTodos()

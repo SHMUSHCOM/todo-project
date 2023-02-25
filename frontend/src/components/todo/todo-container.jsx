@@ -15,8 +15,8 @@ const TodoContainer = () => {
 
     // REFRESH CACHE ON MOUNT
     const getUsers = useGetUsers()
-    const user = useGetLoggedUser()
-    const {invalidateTodos, isLoading} = useInvalidateTodos()
+    const {invalidateTodos ,isLoading} = useInvalidateTodos()
+    
     useEffect(()=>{
         invalidateTodos()
         getUsers()
@@ -46,9 +46,6 @@ const TodoContainer = () => {
     useEffect( ()=>{
         if (!selectedTodoIsVisible || !selectedTodo) dispatch(todoSelected(sortedTodos[0]?._id))
     },[statusFilter, searchFilter])
-
-
-    
 
     return (
         <Styles>{

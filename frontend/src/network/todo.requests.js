@@ -1,59 +1,43 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { todosFetched } from "../state/slices/todo.slice"
-import { usersFetched } from "../state/slices/user.slice"
-import { userUpdated } from "../state/slices/app.slice"
 import { useNavigate } from "react-router-dom"
+
 const { VITE_SERVER_URL } = import.meta.env
 
-const todoEndpoint = `${VITE_SERVER_URL}/todos`
-// FETCH TODOS
-const fetchTodos = async accessToken => {
-  const method = "GET"
-  const headers = [
-    ["content-type", "application/json"],
-    ["access-token", accessToken],
-  ]
-  const response = await fetch(todoEndpoint, { method, headers })
-  const data = await response.json()
-  return {data, success: response.ok}
-}
-
 // CUSTOM HOOK | INVALIDATE TODOS
+const todoEndpoint = `${VITE_SERVER_URL}/todos`
 export const useInvalidateTodos = () => {
   const navigate = useNavigate()
   const accessToken = useSelector(state => state.app.accessToken)
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [data, setData] = useState(null)
   const dispatch = useDispatch()
-  
+
   const invalidateTodos = async () => {
-    setIsLoading(true)
-    const {data, success} = await fetchTodos(accessToken)
-    if (success) dispatch(todosFetched(data))
-    setIsLoading(false)
-    if (!success) navigate('/auth/login')
-  }
-  
-  return { invalidateTodos, isLoading }
-}
-
-// SYNC TODOS FROM CLIENT TO SERVER
-const syncEndpoint = `${VITE_SERVER_URL}/todos/sync`
-export const useSyncTodos = (todos, accessToken)=>{
-  return async () => {
-
-    const method = "POST"
+    const method = "GET"
     const headers = [
       ["content-type", "application/json"],
       ["access-token", accessToken],
     ]
-    const body = todos
-    const response = await fetch(syncEndpoint, { method, headers, body })
+    
+    setIsLoading(true)
+    const response = await fetch(todoEndpoint, { method, headers })
     const data = await response.json()
-  
-    return {data}
+    setData(data)
+    setIsLoading(false)
+    
+    if (response.ok) dispatch(todosFetched(data))
+    if (!response.ok) {
+      setIsError(true)
+      navigate('/auth/login')
+    }
   }
+
+  return { invalidateTodos, data, isError, isLoading }
 }
+  
 
 // CREATE TODO
 export const useCreateTodo = ()=>{
