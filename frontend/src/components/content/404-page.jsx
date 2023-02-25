@@ -9,17 +9,17 @@ const Page404 = () => {
         
         <div className="stars">
             <div className="central-body">
-                <img className="image-404" src="/404/404.svg" width="300px"/>
+                <img className="image-404" src="http://salehriaz.com/404Page/img/404.svg" width="300px"/>
                 <Link to='/list' className="btn-go-home">BACK TO EARTH</Link>
             </div>
             <div className="objects">
-                <img className="object_rocket" src="/404/rocket.svg" width="40px"/>
+                <img className="object_rocket" src="http://salehriaz.com/404Page/img/rocket.svg" width="40px"/>
                 <div className="earth-moon">
-                    <img className="object_earth" src="/404/earth.svg" width="100px"/>
-                    <img className="object_moon" src="/404/moon.svg" width="80px"/>
+                    <img className="object_earth" src="http://salehriaz.com/404Page/img/earth.svg" width="100px"/>
+                    <img className="object_moon" src="http://salehriaz.com/404Page/img/moon.svg" width="80px"/>
                 </div>
                 <div className="box_astronaut">
-                    <img className="object_astronaut" src="/404/spaceman.svg" width="140px"/>
+                    <img className="object_astronaut" src="http://salehriaz.com/404Page/img/astronaut.svg" width="140px"/>
                 </div>
             </div>
             <div className="glowing_stars">
@@ -112,6 +112,7 @@ height: 100vh;
     margin-top: 5px;
     display: inline-block;
 }
+
 
 ul {
     list-style-type: none;
