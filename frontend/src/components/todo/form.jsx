@@ -35,7 +35,8 @@ const TodoForm = () => {
     })
     
     // SETUP REACT HOOK FORM
-    const initialFormState = {values:serializeTodo(todo)}
+    const values = todo ? serializeTodo(todo) : {}
+    const initialFormState = {values}
     const { register, handleSubmit, reset, control, formState: {errors, isDirty}} = useForm(initialFormState)
     
     // UPDATE SERVER AND INVALIDATE REDUX STORE

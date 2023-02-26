@@ -6,18 +6,22 @@ const {VITE_SERVER_URL} = import.meta.env
 
 // GET LOGGED IN USER
 const loggedUserEndpoint = `${VITE_SERVER_URL}/users/self`
-export const useGetLoggedUser = async () => {
+export const useGetLoggedUser = () => {
   const accessToken = useSelector(state => state.app.accessToken)
   const dispatch = useDispatch()
-  const method = "GET"
-  const headers = [
-    ["content-type", "application/json"],
-    ["access-token", accessToken],
-  ]
-  const response = await fetch(loggedUserEndpoint, { method, headers })
-  const user = await response.json()
-  dispatch(userUpdated(user))
-  return user
+  
+  return async () => {
+    const method = "GET"
+    const headers = [
+      ["content-type", "application/json"],
+      ["access-token", accessToken],
+    ]
+
+    const response = await fetch(loggedUserEndpoint, { method, headers })
+    const user = await response.json()
+    dispatch(userUpdated(user))
+    return {user}
+  }
 }
 
 const userEndpoint = `${VITE_SERVER_URL}/users/`
